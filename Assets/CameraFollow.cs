@@ -4,25 +4,24 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    [SerializeField] private float followSpeed = 0.1f; // Velocità di follow
-    [SerializeField] private Vector3 offset = new Vector3(0f, 5f, -10f); // Offset rispetto al giocatore
+    [SerializeField] private float followSpeed = 0.1f;
+    [SerializeField] private Vector3 offset = new Vector3(0f, 5f, -10f); // Offset compared to player
 
-    private Vector3 velocity = Vector3.zero; // Variabile per SmoothDamp
+    private Vector3 velocity = Vector3.zero; // SmoothDamp variable
 
-    // Start è chiamato all'inizio
+    // Initial Function
     void Start()
     {
-        // Imposta un FOV di default per evitare zoom strani
-        Camera.main.fieldOfView = 60f; // Puoi regolarlo a seconda delle necessità
+        Camera.main.fieldOfView = 60f; // FOV, Modify on case-by-case basis
     }
 
-    // Update è chiamato una volta per frame
+    // Update every frame
     void Update()
     {
-        // Calcola la posizione target con l'offset
+        // Calculate target positon with offset (?)
         Vector3 targetPosition = PlayerControll.Instance.transform.position + offset;
 
-        // Sposta la telecamera verso la posizione target con SmoothDamp per un movimento più fluido
+        // SmoothDamp
         transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, followSpeed);
     }
 }

@@ -2,19 +2,19 @@ using UnityEngine;
 
 public class PlayerControll : MonoBehaviour
 {
-    [Header("Horizontal Movement Setting")]
+    [Header("Horizontal Movement Setting")] // Reference to Rigidbody2D for physics-based movement
     private Rigidbody2D rb;
 
     [SerializeField] private float walkspeed = 1;
 
-    private float xAxis;
+    private float xAxis; // Holds horizontal input
     private bool isAttacking;
-    private float timeBetweenAttack, timeSinceAttack;
+    private float timeBetweenAttack, timeSinceAttack; // Attack timing control
     Animator anim;
 
-    public static PlayerControll Instance;
+    public static PlayerControll Instance; // Singleton instance for easy access
 
-    private void Awake()
+    private void Awake() // Singleton pattern to ensure only one instance exists
     {
         if (Instance != null && Instance != this)
         {
@@ -28,7 +28,7 @@ public class PlayerControll : MonoBehaviour
 
     [Header("Ground Check Settings")]
     [SerializeField] private float jumpForce = 45;
-    [SerializeField] private Transform groundCheckPoint;
+    [SerializeField] private Transform groundCheckPoint; // Check ground raycast
     [SerializeField] private float groundCheckY = 0.2f;
     [SerializeField] private float groundCheckX = 0.5f;
     [SerializeField] private LayerMask whatIsGround;
