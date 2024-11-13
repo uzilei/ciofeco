@@ -8,8 +8,7 @@ public class PlayerControll : MonoBehaviour
     [SerializeField] private float walkspeed = 1;
 
     private float xAxis; // Holds horizontal input
-    private bool isAttacking;
-    private float timeBetweenAttack, timeSinceAttack; // Attack timing control
+    private float yAxis; // Holds vertical input
     Animator anim;
 
     public static PlayerControll Instance; // Singleton instance for easy access
@@ -33,12 +32,26 @@ public class PlayerControll : MonoBehaviour
     [SerializeField] private float groundCheckX = 0.5f;
     [SerializeField] private LayerMask whatIsGround;
 
+    [Header("Attacking")]
+    private bool isAttacking;
+    private float timeSinceAttack; // Attack timing control
+    [SerializeField] Transform FrontAttackTransform, UpAttackTransform;
+    [SerializeField] Vector2 FrontAttackArea, UpAttackArea;
+    [SerializeField] LayerMask attackableLayer;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
 
+    }
+
+    void OnDrawGizmos() // Display attack areas in editor
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(FrontAttackTransform.position, FrontAttackArea);
+        Gizmos.DrawWireCube(UpAttackTransform.position, UpAttackArea);
     }
 
     // Update is called once per frame
@@ -54,6 +67,7 @@ public class PlayerControll : MonoBehaviour
     void GetInputs()
     {
         xAxis = Input.GetAxisRaw("Horizontal");
+        yAxis = Input.GetAxisRaw("Vertical");
         isAttacking = Input.GetKeyDown("k");
     }
 
@@ -108,11 +122,29 @@ public class PlayerControll : MonoBehaviour
     void Attack()
     {
         timeSinceAttack += Time.deltaTime;
-        if (isAttacking && timeSinceAttack >= timeBetweenAttack)
+        if (isAttacking && timeSinceAttack >= 1) // Number is attack cooldown in seconds
         {
             timeSinceAttack = 0;
             anim.SetTrigger("Attacking");
             Debug.Log("Attacked");
+
+            if (Grounded()) // Define attack axis
+            {
+                Hit(FrontAttackTransform, FrontAttackArea);
+            }
+            else
+            {
+                Hit(UpAttackTransform, UpAttackArea);
+            }
+        }
+    }
+    void Hit(Transform FrontAttackTransform, Vector2 FrontAttackArea)
+    {
+        Collider2D[] objectsToHit = Physics2D.OverlapBoxAll(FrontAttackTransform.position, FrontAttackArea, 0, attackableLayer);
+
+        if (objectsToHit.Length > 0)
+        {
+            Debug.Log("Hit");
         }
     }
 }
