@@ -128,20 +128,23 @@ public class PlayerControll : MonoBehaviour
             anim.SetTrigger("Attacking");
             Debug.Log("Attacked");
 
-            if (Grounded()) // Define attack axis
+            if (yAxis == 0 || yAxis < 0 && Grounded()) // Define attack axis
             {
                 Hit(FrontAttackTransform, FrontAttackArea);
+                Debug.Log("FrontHit");
             }
-            else
+            else if (yAxis > 0)
             {
                 Hit(UpAttackTransform, UpAttackArea);
+                Debug.Log("UpHit");
             }
         }
     }
-    void Hit(Transform FrontAttackTransform, Vector2 FrontAttackArea)
+    void Hit(Transform _AttackTransform, Vector2 _AttackArea)
     {
-        Collider2D[] objectsToHit = Physics2D.OverlapBoxAll(FrontAttackTransform.position, FrontAttackArea, 0, attackableLayer);
-
+        Debug.Log("DebugHit");
+        Collider2D[] objectsToHit = Physics2D.OverlapBoxAll(_AttackTransform.position, _AttackArea, 0, attackableLayer);
+        Debug.Log(objectsToHit.Length);
         if (objectsToHit.Length > 0)
         {
             Debug.Log("Hit");
