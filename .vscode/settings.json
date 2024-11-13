@@ -56,5 +56,6 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "ggg.sln"
+    "dotnet.defaultSolution": "ciofeco.sln",
+    "FSharp.suggestGitignore": false
 }
