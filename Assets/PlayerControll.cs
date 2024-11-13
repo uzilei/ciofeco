@@ -125,29 +125,24 @@ public class PlayerControll : MonoBehaviour
         if (isAttacking && timeSinceAttack >= 1) // Number is attack cooldown in seconds
         {
             timeSinceAttack = 0;
-            anim.SetTrigger("Attacking");
-            Debug.Log("Attacked");
 
             if (yAxis == 0 || yAxis < 0 && Grounded()) // Define attack axis
             {
                 Hit(FrontAttackTransform, FrontAttackArea);
-                Debug.Log("FrontHit");
+                anim.SetTrigger("FrontAttacking");
+                Debug.Log("FrontAttacked");
             }
             else if (yAxis > 0)
             {
                 Hit(UpAttackTransform, UpAttackArea);
-                Debug.Log("UpHit");
+                anim.SetTrigger("UpAttacking");
+                Debug.Log("UpAttacked");
             }
         }
     }
     void Hit(Transform _AttackTransform, Vector2 _AttackArea)
     {
-        Debug.Log("DebugHit");
         Collider2D[] objectsToHit = Physics2D.OverlapBoxAll(_AttackTransform.position, _AttackArea, 0, attackableLayer);
         Debug.Log(objectsToHit.Length);
-        if (objectsToHit.Length > 0)
-        {
-            Debug.Log("Hit");
-        }
     }
 }
