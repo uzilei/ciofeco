@@ -8,6 +8,8 @@ public class PlayerControll : MonoBehaviour
     [SerializeField] private float walkspeed = 1;
 
     private float xAxis;
+    private bool isAttacking;
+    private float timeBetweenAttack, timeSinceAttack;
     Animator anim;
 
     //public static PlayerController Instance; 
@@ -43,11 +45,13 @@ public class PlayerControll : MonoBehaviour
         Move();
         Jump();
         flip();
+        Attack();
     }
 
     void GetInputs()
     {
         xAxis = Input.GetAxisRaw("Horizontal");
+        isAttacking = Input.GetKeyDown("k");
     }
 
     void flip()
@@ -97,5 +101,15 @@ public class PlayerControll : MonoBehaviour
         }
 
         anim.SetBool("Jumping", !Grounded());
+    }
+    void Attack()
+    {
+        timeSinceAttack += Time.deltaTime;
+        if (isAttacking && timeSinceAttack >= timeBetweenAttack)
+        {
+            timeSinceAttack = 0;
+            anim.SetTrigger("Attacking");
+            Debug.Log("Attacked");
+        }
     }
 }
