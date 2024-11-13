@@ -12,16 +12,19 @@ public class PlayerControll : MonoBehaviour
     private float timeBetweenAttack, timeSinceAttack;
     Animator anim;
 
-    //public static PlayerController Instance; 
+    public static PlayerControll Instance;
 
-    // private void Awake(){
-    //     if(Instance != null && Instance != this){
-    //         Destroy(gameObject);
-    //     }
-    //     else {
-    //         Instance = this;
-    //     }
-    // }
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
 
     [Header("Ground Check Settings")]
     [SerializeField] private float jumpForce = 45;
