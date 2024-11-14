@@ -91,7 +91,7 @@ public class PlayerControll : MonoBehaviour
 
         if (Input.GetKeyDown("k") && !isAttacking && !comboCooldownActive)
         {
-            if (yAxis > 0)
+            if (yAxis > 0 && Grounded())
             {
                 UpAttack();
             }
@@ -221,6 +221,12 @@ public class PlayerControll : MonoBehaviour
             Debug.Log("Attack3");
             Hit(FrontAttackTransform, FrontAttackArea, damage + extraComboDamage);
         }
+        if (!Grounded()) // Stop vertical movement when attacking in the air
+    {
+        anim.SetBool("Jumping", false);
+        rb.linearVelocity = new Vector2(0, 0);
+        rb.gravityScale = 0;
+    }
             StartCoroutine(EndAttack());
     }
     void UpAttack()
@@ -238,6 +244,7 @@ public class PlayerControll : MonoBehaviour
     {
         yield return new WaitForSeconds(0.4f); // Cooldown between non-combo attacks
         isAttacking = false;
+        rb.gravityScale = gravity;
         pState = PlayerState.Idle;
     }
 
