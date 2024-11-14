@@ -180,7 +180,6 @@ public class PlayerControll : MonoBehaviour
         if (isAttacking && timeSinceAttack >= 1)
         {
             timeSinceAttack = 0;
-            anim.SetBool("IsAttacking", true);
             pState = PlayerState.Attacking; // Cambia lo stato per evitare altre animazioni
 
             if (yAxis == 0 || (yAxis < 0 && Grounded()))
@@ -201,7 +200,6 @@ public class PlayerControll : MonoBehaviour
     IEnumerator EndAttack()
     {
         yield return new WaitForSeconds(0.5f);
-        anim.SetBool("IsAttacking", false);
         isAttacking = false;
         pState = PlayerState.Idle; // Ritorna allo stato Idle al termine
     }
@@ -214,7 +212,7 @@ public class PlayerControll : MonoBehaviour
         {
             if (objectsToHit[i].GetComponent<Enemy>() != null)
             {
-                objectsToHit[i].GetComponent<Enemy>().EnemyHit(damage);
+                objectsToHit[i].GetComponent<Enemy>().EnemyHit(damage, (transform.position - objectsToHit[i].transform.position).normalized, 100);
             }
         }
     }
