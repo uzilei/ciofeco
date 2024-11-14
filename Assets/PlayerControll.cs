@@ -160,9 +160,15 @@ public class PlayerControll : MonoBehaviour
         pState = PlayerState.Dashing;
         rb.gravityScale = 0;
         rb.linearVelocity = new Vector2(transform.localScale.x * dashSpeed, 0);
+        //Collision Disability with Attackable Layer(Enemies) during the dash
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Default"), LayerMask.NameToLayer("attackable"), true); 
+
         yield return new WaitForSeconds(dashTime);
         rb.gravityScale = gravity;
         pState = PlayerState.Idle;
+        //Collision recovery after dash
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Default"), LayerMask.NameToLayer("attackable"), false);
+
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
     }
