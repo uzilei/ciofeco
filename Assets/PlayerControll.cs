@@ -23,8 +23,10 @@ public class PlayerControll : MonoBehaviour
     private bool dashed;
     public static PlayerControll Instance;
 
-    private bool isAttacking; // Indica se l'attacco è attivo
-    private bool isMoving; // Indica se il giocatore si sta muovendo
+    private bool isAttacking;
+    private bool isMoving;
+    private int attackCount = 0;
+    private float timeSinceAttack = 0f;
 
     private void Awake()
     {
@@ -54,9 +56,12 @@ public class PlayerControll : MonoBehaviour
     [SerializeField] Transform FrontAttackTransform, UpAttackTransform;
     [SerializeField] Vector2 FrontAttackArea, UpAttackArea;
     [SerializeField] LayerMask attackableLayer;
-    [SerializeField] float damage; // Damage done to enemy on attack
+    [SerializeField] int damage; // Damage done to enemy on attack
+    [SerializeField] int extraComboDamage;
+    [SerializeField] private float comboCooldown = 1.5f;
+    [SerializeField] private float comboResetTime = 1.5f;
     [SerializeField] float playerHealth;
-
+    private bool comboCooldownActive = false;
     private enum PlayerState { Idle, Walking, Jumping, Dashing, Attacking }
     private PlayerState pState = PlayerState.Idle;
 
@@ -78,24 +83,34 @@ public class PlayerControll : MonoBehaviour
     {
         GetInputs();
 
-        if (pState == PlayerState.Dashing || pState == PlayerState.Attacking) return;
+        if (pState == PlayerState.Dashing) return;
 
         Move();
         Jump();
         Flip();
         StartDash();
-        Attack();
+
+        if (Input.GetKeyDown("k") && !isAttacking && !comboCooldownActive)
+        {
+            Attack();
+        }
+
+        // Reset attack combo logic, more efficient if in Attack() method, but more reliable here
+        timeSinceAttack += Time.deltaTime;
+        if (comboCooldownActive && timeSinceAttack >= comboCooldown) // Reset combo if comboCooldownActive is true and timeSinceAttack reaches comboCooldownTime
+        {
+            ResetCombo();
+        }
+        else if (!comboCooldownActive && timeSinceAttack >= comboResetTime) // Reset combo if no attack is performed within comboResetTime
+        {
+            ResetCombo();
+        }
     }
 
     void GetInputs()
     {
         xAxis = Input.GetAxisRaw("Horizontal");
         yAxis = Input.GetAxisRaw("Vertical");
-
-        if (!isAttacking)
-        {
-            isAttacking = Input.GetKeyDown("k");
-        }
     }
 
     void Flip()
@@ -114,14 +129,14 @@ public class PlayerControll : MonoBehaviour
     {
         isMoving = xAxis != 0;
 
-        if (!isAttacking) // Blocca il movimento durante l'attacco
+        if (!isAttacking)
         {
             rb.linearVelocity = new Vector2(walkspeed * xAxis, rb.linearVelocity.y);
             anim.SetBool("Walking", isMoving && Grounded());
         }
-        else
+        else // Stops movement during attack
         {
-            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y); // Ferma il movimento
+            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y); 
             anim.SetBool("Walking", false);
         }
     }
@@ -139,7 +154,7 @@ public class PlayerControll : MonoBehaviour
         }
     }
 
-    IEnumerator Dash()
+    IEnumerator Dash() // nael mi dovresti spiegare cosa fa tutta questa roba
     {
         canDash = false;
         pState = PlayerState.Dashing;
@@ -179,34 +194,48 @@ public class PlayerControll : MonoBehaviour
 
     void Attack()
     {
-
-        if (isAttacking)
+        isAttacking = true;
+        timeSinceAttack = 0f;
+        attackCount++;
+        if (attackCount == 1)
         {
-            pState = PlayerState.Attacking; // Cambia lo stato per evitare altre animazioni
-
-            if (yAxis == 0 || (yAxis < 0 && Grounded()))
-            {
-                Hit(FrontAttackTransform, FrontAttackArea);
-                anim.SetTrigger("FrontAttacking");
-            }
-            else if (yAxis > 0)
-            {
-                Hit(UpAttackTransform, UpAttackArea);
-                anim.SetTrigger("UpAttacking");
-            }
-
-            StartCoroutine(EndAttack());
+            anim.SetTrigger("FrontAttacking");
+            Debug.Log("Attack1");
+            Hit(FrontAttackTransform, FrontAttackArea, damage);
         }
+        else if (attackCount == 2)
+        {
+            anim.SetTrigger("FrontAttacking");
+            Debug.Log("Attack2");
+            Hit(FrontAttackTransform, FrontAttackArea, damage);
+        }
+        else if (attackCount == 3)
+        {
+            anim.SetTrigger("FrontAttacking");
+            comboCooldownActive = true; // Activate longer cooldown only after third attack
+            Debug.Log("Attack3");
+            Hit(FrontAttackTransform, FrontAttackArea, damage + extraComboDamage);
+        }
+            StartCoroutine(EndAttack());
     }
 
     IEnumerator EndAttack()
     {
-        yield return new WaitForSeconds(0.4f);
+        Debug.Log("EndAttack()");
+        yield return new WaitForSeconds(0.4f); // Cooldown between non-combo attacks
         isAttacking = false;
-        pState = PlayerState.Idle; // Ritorna allo stato Idle al termine
+        pState = PlayerState.Idle;
     }
 
-    void Hit(Transform _AttackTransform, Vector2 _AttackArea)
+    private void ResetCombo()
+    {
+        Debug.Log("ResetCombo");
+        attackCount = 0;
+        comboCooldownActive = false;
+        timeSinceAttack = 0f;
+    }
+
+    void Hit(Transform _AttackTransform, Vector2 _AttackArea, int damageTotal)
     {
         Collider2D[] objectsToHit = Physics2D.OverlapBoxAll(_AttackTransform.position, _AttackArea, 0, attackableLayer);
 
@@ -214,7 +243,7 @@ public class PlayerControll : MonoBehaviour
         {
             if (objectsToHit[i].GetComponent<Enemy>() != null)
             {
-                objectsToHit[i].GetComponent<Enemy>().EnemyHit(damage, (transform.position - objectsToHit[i].transform.position).normalized, 100);
+                objectsToHit[i].GetComponent<Enemy>().EnemyHit(damageTotal, (transform.position - objectsToHit[i].transform.position).normalized, 100);
             }
         }
     }
