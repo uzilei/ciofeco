@@ -700,6 +700,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkspeed: 5
+  health: 20
+  maxHealth: 20
   jumpForce: 12
   groundCheckPoint: {fileID: 2135941905}
   groundCheckY: 0.2
@@ -717,7 +719,7 @@ MonoBehaviour:
   attackableLayer:
     serializedVersion: 2
     m_Bits: 64
-  damage: 5
+  damage: 1
   playerHealth: 0
 --- !u!95 &1224795439
 Animator:
@@ -753,7 +755,7 @@ GameObject:
   - component: {fileID: 1335929460}
   - component: {fileID: 1335929459}
   - component: {fileID: 1335929458}
-  - component: {fileID: 1335929457}
+  - component: {fileID: 1335929462}
   m_Layer: 6
   m_Name: Enemy
   m_TagString: Untagged
@@ -761,22 +763,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1335929457
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1335929456}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dea6afd59b278eb4c97af3d942fde712, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 12
-  recoilLength: 1
-  recoilFactor: 2
-  isRecoiling: 0
 --- !u!61 &1335929458
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -914,12 +900,30 @@ Transform:
   m_GameObject: {fileID: 1335929456}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.409, y: -2.945, z: 0}
-  m_LocalScale: {x: 0.2159, y: 0.8805, z: 1}
+  m_LocalPosition: {x: 1.6636, y: -2.945, z: 0}
+  m_LocalScale: {x: 0.7249399, y: 0.8805, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1335929462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1335929456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f51650cf26ff344bbe810682860f63e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 10
+  recoilLength: 1
+  recoilFactor: 5
+  isRecoiling: 0
+  player: {fileID: 0}
+  speed: 1
 --- !u!1 &1801895337
 GameObject:
   m_ObjectHideFlags: 0
