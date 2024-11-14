@@ -50,6 +50,8 @@ public class PlayerControll : MonoBehaviour
     [SerializeField] Transform FrontAttackTransform, UpAttackTransform;
     [SerializeField] Vector2 FrontAttackArea, UpAttackArea;
     [SerializeField] LayerMask attackableLayer;
+    [SerializeField] float damage; // Damage done to enemy on attack
+    [SerializeField] float playerHealth;
 
     private enum PlayerState { Idle, Walking, Jumping, Dashing, Attacking }
     private PlayerState pState = PlayerState.Idle;
@@ -207,5 +209,13 @@ public class PlayerControll : MonoBehaviour
     void Hit(Transform _AttackTransform, Vector2 _AttackArea)
     {
         Collider2D[] objectsToHit = Physics2D.OverlapBoxAll(_AttackTransform.position, _AttackArea, 0, attackableLayer);
+
+        for (int i = 0; i < objectsToHit.Length; i++)
+        {
+            if (objectsToHit[i].GetComponent<Enemy>() != null)
+            {
+                objectsToHit[i].GetComponent<Enemy>().EnemyHit(damage);
+            }
+        }
     }
 }
