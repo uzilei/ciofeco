@@ -1,19 +1,33 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerControll : MonoBehaviour
 {
-    [Header("Horizontal Movement Setting")] // Reference to Rigidbody2D for physics-based movement
+    [Header("Horizontal Movement Setting")]
     private Rigidbody2D rb;
 
     [SerializeField] private float walkspeed = 1;
 
-    private float xAxis; // Holds horizontal input
-    private float yAxis; // Holds vertical input
+    private float xAxis;
+    private float yAxis;
+    private float gravity;
+    
+    [Header("Health Settings")]
+    public int health;
+    public int maxHealth;
+    [Space(5)]
     Animator anim;
 
-    public static PlayerControll Instance; // Singleton instance for easy access
+    private bool canDash = true;
+    public static PlayerControll Instance;
 
-    private void Awake() // Singleton pattern to ensure only one instance exists
+    private bool isAttacking;
+    private bool isMoving;
+    private int attackCount = 0;
+    private float timeSinceAttack = 0f;
+
+    private void Awake()
     {
         if (Instance != null && Instance != this)
         {
@@ -27,57 +41,90 @@ public class PlayerControll : MonoBehaviour
 
     [Header("Ground Check Settings")]
     [SerializeField] private float jumpForce = 45;
-    [SerializeField] private Transform groundCheckPoint; // Check ground raycast
+    [SerializeField] private Transform groundCheckPoint;
     [SerializeField] private float groundCheckY = 0.2f;
     [SerializeField] private float groundCheckX = 0.5f;
     [SerializeField] private LayerMask whatIsGround;
 
+    [Header("Dash Settings")]
+    [SerializeField] private float dashSpeed;
+    [SerializeField] private float dashTime;
+    [SerializeField] private float dashCooldown;
+
     [Header("Attacking")]
-    private bool isAttacking;
-    private float timeSinceAttack; // Attack timing control
     [SerializeField] Transform FrontAttackTransform, UpAttackTransform;
     [SerializeField] Vector2 FrontAttackArea, UpAttackArea;
     [SerializeField] LayerMask attackableLayer;
+    [SerializeField] int damage; // Damage done to enemy on attack
+    [SerializeField] int extraComboDamage;
+    [SerializeField] private float comboCooldown = 1.5f;
+    [SerializeField] private float comboResetTime = 1.5f;
+    [SerializeField] float playerHealth;
+    private bool comboCooldownActive = false;
+    private enum PlayerState { Idle, Walking, Jumping, Dashing, Attacking }
+    private PlayerState pState = PlayerState.Idle;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-
+        gravity = rb.gravityScale;
     }
 
-    void OnDrawGizmos() // Display attack areas in editor
+    void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(FrontAttackTransform.position, FrontAttackArea);
         Gizmos.DrawWireCube(UpAttackTransform.position, UpAttackArea);
     }
 
-    // Update is called once per frame
     void Update()
     {
         GetInputs();
+
+        if (pState == PlayerState.Dashing) return;
+
         Move();
         Jump();
-        flip();
-        Attack();
+        Flip();
+        StartDash();
+
+        if (Input.GetKeyDown("k") && !isAttacking && !comboCooldownActive)
+        {
+            if (yAxis > 0 && Grounded())
+            {
+                UpAttack();
+            }
+        else
+            {
+                Attack();
+            }
+        }
+
+        // Reset attack combo logic, more efficient if in Attack() method, but more reliable here
+        timeSinceAttack += Time.deltaTime;
+        if (comboCooldownActive && timeSinceAttack >= comboCooldown) // Reset combo if comboCooldownActive is true and timeSinceAttack reaches comboCooldownTime
+        {
+            ResetCombo();
+        }
+        else if (!comboCooldownActive && timeSinceAttack >= comboResetTime) // Reset combo if no attack is performed within comboResetTime
+        {
+            ResetCombo();
+        }
     }
 
     void GetInputs()
     {
         xAxis = Input.GetAxisRaw("Horizontal");
         yAxis = Input.GetAxisRaw("Vertical");
-        isAttacking = Input.GetKeyDown("k");
     }
 
-    void flip()
+    void Flip()
     {
         if (xAxis < 0)
         {
             transform.localScale = new Vector2(-2, transform.localScale.y);
         }
-
         else if (xAxis > 0)
         {
             transform.localScale = new Vector2(2, transform.localScale.y);
@@ -86,63 +133,139 @@ public class PlayerControll : MonoBehaviour
 
     private void Move()
     {
-        rb.linearVelocity = new Vector2(walkspeed * xAxis, rb.linearVelocity.y);
-        anim.SetBool("Walking", rb.linearVelocity.x != 0 && Grounded());
+        isMoving = xAxis != 0;
+
+        if (!isAttacking)
+        {
+            rb.linearVelocity = new Vector2(walkspeed * xAxis, rb.linearVelocity.y);
+            anim.SetBool("Walking", isMoving && Grounded());
+        }
+        else // Stops movement during attack
+        {
+            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y); 
+            anim.SetBool("Walking", false);
+        }
+    }
+
+    void StartDash()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash && !isAttacking)
+        {
+            StartCoroutine(Dash());
+        }
+    }
+
+    IEnumerator Dash()
+    {
+        canDash = false;
+        pState = PlayerState.Dashing;
+        rb.gravityScale = 0;
+        rb.linearVelocity = new Vector2(transform.localScale.x * dashSpeed, 0);
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Default"), LayerMask.NameToLayer("attackable"), true); 
+
+        yield return new WaitForSeconds(dashTime);
+        rb.gravityScale = gravity;
+        pState = PlayerState.Idle;
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Default"), LayerMask.NameToLayer("attackable"), false);
+
+        yield return new WaitForSeconds(dashCooldown);
+        canDash = true;
     }
 
     public bool Grounded()
     {
-        if (Physics2D.Raycast(groundCheckPoint.position, Vector2.down, groundCheckY, whatIsGround)
+        return Physics2D.Raycast(groundCheckPoint.position, Vector2.down, groundCheckY, whatIsGround)
             || Physics2D.Raycast(groundCheckPoint.position + new Vector3(groundCheckX, 0, 0), Vector2.down, groundCheckY, whatIsGround)
-            || Physics2D.Raycast(groundCheckPoint.position + new Vector3(-groundCheckX, 0, 0), Vector2.down, groundCheckY, whatIsGround))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-
+            || Physics2D.Raycast(groundCheckPoint.position + new Vector3(-groundCheckX, 0, 0), Vector2.down, groundCheckY, whatIsGround);
     }
+
     void Jump()
     {
-
-        if (Input.GetButtonUp("Jump") && rb.linearVelocity.y > 0)
+        if (!isAttacking)
         {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0);
-        }
+            if (Input.GetButtonUp("Jump") && rb.linearVelocity.y > 0)
+            {
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0);
+            }
 
-        if (Input.GetButtonDown("Jump") && Grounded())
-        {
-            rb.linearVelocity = new Vector3(rb.linearVelocity.x, jumpForce);
-        }
+            if (Input.GetButtonDown("Jump") && Grounded())
+            {
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            }
 
-        anim.SetBool("Jumping", !Grounded());
+            anim.SetBool("Jumping", !Grounded());
+        }
     }
+
     void Attack()
     {
-        timeSinceAttack += Time.deltaTime;
-        if (isAttacking && timeSinceAttack >= 1) // Number is attack cooldown in seconds
+        isAttacking = true;
+        timeSinceAttack = 0f;
+        attackCount++;
+        if (attackCount == 1)
         {
-            timeSinceAttack = 0;
-
-            if (yAxis == 0 || yAxis < 0 && Grounded()) // Define attack axis
-            {
-                Hit(FrontAttackTransform, FrontAttackArea);
-                anim.SetTrigger("FrontAttacking");
-                Debug.Log("FrontAttacked");
-            }
-            else if (yAxis > 0)
-            {
-                Hit(UpAttackTransform, UpAttackArea);
-                anim.SetTrigger("UpAttacking");
-                Debug.Log("UpAttacked");
-            }
+            anim.SetTrigger("FrontAttacking");
+            Debug.Log("Attack1");
+            Hit(FrontAttackTransform, FrontAttackArea, damage);
         }
+        else if (attackCount == 2)
+        {
+            anim.SetTrigger("FrontAttacking");
+            Debug.Log("Attack2");
+            Hit(FrontAttackTransform, FrontAttackArea, damage);
+        }
+        else if (attackCount == 3)
+        {
+            anim.SetTrigger("FrontAttacking");
+            comboCooldownActive = true; // Activate longer cooldown only after third attack
+            Debug.Log("Attack3");
+            Hit(FrontAttackTransform, FrontAttackArea, damage + extraComboDamage);
+        }
+        if (!Grounded()) // Stop vertical movement when attacking in the air
+    {
+        anim.SetBool("Jumping", false);
+        rb.linearVelocity = new Vector2(0, 0);
+        rb.gravityScale = 0;
     }
-    void Hit(Transform _AttackTransform, Vector2 _AttackArea)
+            StartCoroutine(EndAttack());
+    }
+    void UpAttack()
+    {
+        isAttacking = true;
+        timeSinceAttack = 0f;
+        comboCooldownActive = true;
+        anim.SetTrigger("UpAttacking");
+        Debug.Log("UpAttack");
+        Hit(UpAttackTransform, UpAttackArea, damage);
+        StartCoroutine(EndAttack());
+    }
+
+    IEnumerator EndAttack()
+    {
+        yield return new WaitForSeconds(0.4f); // Cooldown between non-combo attacks
+        isAttacking = false;
+        rb.gravityScale = gravity;
+        pState = PlayerState.Idle;
+    }
+
+    private void ResetCombo()
+    {
+        Debug.Log("Combo Reset");
+        attackCount = 0;
+        comboCooldownActive = false;
+        timeSinceAttack = 0f;
+    }
+
+    void Hit(Transform _AttackTransform, Vector2 _AttackArea, int damageTotal)
     {
         Collider2D[] objectsToHit = Physics2D.OverlapBoxAll(_AttackTransform.position, _AttackArea, 0, attackableLayer);
-        Debug.Log(objectsToHit.Length);
+
+        for (int i = 0; i < objectsToHit.Length; i++)
+        {
+            if (objectsToHit[i].GetComponent<Enemy>() != null)
+            {
+                objectsToHit[i].GetComponent<Enemy>().EnemyHit(damageTotal, (transform.position - objectsToHit[i].transform.position).normalized, 100);
+            }
+        }
     }
 }

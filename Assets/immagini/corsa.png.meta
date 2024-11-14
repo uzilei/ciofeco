@@ -1,49 +1,49 @@
 fileFormatVersion: 2
-guid: c5072ec2de33a214e92ec4f33ad6df08
+guid: 5f14a3b30cefd674dadadae1d81aa4d4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5328072233118910199
-    second: richi_0
+      213: -8315147829809977716
+    second: corsa_0
   - first:
-      213: 6910552391189908775
-    second: richi_1
+      213: 156651135221571733
+    second: corsa_1
   - first:
-      213: -5786685158186090130
-    second: richi_2
+      213: -230956845047128131
+    second: corsa_2
   - first:
-      213: 3402139090622497740
-    second: richi_3
+      213: -7688780346038672383
+    second: corsa_3
   - first:
-      213: 5270990922858161667
-    second: richi_4
+      213: -6439090803485541916
+    second: corsa_4
   - first:
-      213: -4795132698517339808
-    second: richi_5
+      213: -6321431563641269175
+    second: corsa_5
   - first:
-      213: -1424787506299036792
-    second: richi_6
+      213: 2697428920773585555
+    second: corsa_6
   - first:
-      213: -5520331477034301911
-    second: richi_7
+      213: -5609617109693347875
+    second: corsa_7
   - first:
-      213: -5381725368887963156
-    second: richi_8
+      213: -213165818097702040
+    second: corsa_8
   - first:
-      213: 1120207387624254729
-    second: richi_9
+      213: 8949004349671421728
+    second: corsa_9
   - first:
-      213: -3766746255333601928
-    second: richi_10
+      213: 6295598201618203896
+    second: corsa_10
   - first:
-      213: 4759429767836239908
-    second: richi_11
+      213: 2058159781911981806
+    second: corsa_11
   - first:
-      213: 576991890270557231
-    second: richi_12
+      213: -3443867057480863825
+    second: corsa_12
   - first:
-      213: -391219086482695958
-    second: richi_13
+      213: 4233240996316834804
+    second: corsa_13
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -114,7 +114,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -152,7 +152,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: richi_0
+      name: corsa_0
       rect:
         serializedVersion: 2
         x: 0
@@ -165,16 +165,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 48e0bda43380a8443982dbd4e18b6a7d
-      internalID: -1953706698
+      spriteID: c86e055ba19aa9c80800000000000000
+      internalID: -8315147829809977716
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: richi_1
+      name: corsa_1
       rect:
         serializedVersion: 2
         x: 78
@@ -187,16 +187,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 6f36a1e6954eae941a5308dcd254879f
-      internalID: -734191041
+      spriteID: 5902b84a0698c2200800000000000000
+      internalID: 156651135221571733
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: richi_2
+      name: corsa_2
       rect:
         serializedVersion: 2
         x: 156
@@ -209,16 +209,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 72dfa3ab791f770439484db69a22cb06
-      internalID: -1730588790
+      spriteID: dbf558c19f97bccf0800000000000000
+      internalID: -230956845047128131
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: richi_3
+      name: corsa_3
       rect:
         serializedVersion: 2
         x: 234
@@ -231,16 +231,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: f46e2a336cb082540a557f94a3292b4c
-      internalID: 1364698775
+      spriteID: 1042c5e1307fb4590800000000000000
+      internalID: -7688780346038672383
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: richi_4
+      name: corsa_4
       rect:
         serializedVersion: 2
         x: 312
@@ -253,16 +253,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 8c64b0412af4cdb4482e14a06e3e24cc
-      internalID: -1879717592
+      spriteID: 4e972cda701c3a6a0800000000000000
+      internalID: -6439090803485541916
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: richi_5
+      name: corsa_5
       rect:
         serializedVersion: 2
         x: 390
@@ -275,16 +275,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 81ca8caac562ccc40b0e529b8ed91202
-      internalID: -497860164
+      spriteID: 94458393c73c548a0800000000000000
+      internalID: -6321431563641269175
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: richi_6
+      name: corsa_6
       rect:
         serializedVersion: 2
         x: 468
@@ -297,16 +297,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: eb34e1112c4b84e4eb173a1f0d42b6bf
-      internalID: -13574030
+      spriteID: 39a2395df413f6520800000000000000
+      internalID: 2697428920773585555
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: richi_7
+      name: corsa_7
       rect:
         serializedVersion: 2
         x: 546
@@ -319,16 +319,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 5ecb7ce2775588e4fa22b7da4a022a2f
-      internalID: -1095113191
+      spriteID: dd746c2b5f2a622b0800000000000000
+      internalID: -5609617109693347875
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: richi_8
+      name: corsa_8
       rect:
         serializedVersion: 2
         x: 624
@@ -341,16 +341,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 42680cb4bea01024ebbb7bd0601144c4
-      internalID: -564971985
+      spriteID: 86be70e51deaa0df0800000000000000
+      internalID: -213165818097702040
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: richi_9
+      name: corsa_9
       rect:
         serializedVersion: 2
         x: 702
@@ -363,16 +363,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 7aa5285cf9b0d854f84b64ae45d1fb76
-      internalID: -797909237
+      spriteID: 027379bca00413c70800000000000000
+      internalID: 8949004349671421728
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: richi_10
+      name: corsa_10
       rect:
         serializedVersion: 2
         x: 780
@@ -385,16 +385,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: bb814385b9f0ad94f8bceff2d200ca51
-      internalID: -338593166
+      spriteID: 8f48a0875357e5750800000000000000
+      internalID: 6295598201618203896
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: richi_11
+      name: corsa_11
       rect:
         serializedVersion: 2
         x: 858
@@ -407,16 +407,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: fbd564e0497e9e04ba8e45420e6fe21e
-      internalID: -1266179344
+      spriteID: eeeebd3ca6d009c10800000000000000
+      internalID: 2058159781911981806
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: richi_12
+      name: corsa_12
       rect:
         serializedVersion: 2
         x: 936
@@ -429,16 +429,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: a5a71731925ab314b9afa59affead7b0
-      internalID: -923808533
+      spriteID: fafee29582de430d0800000000000000
+      internalID: -3443867057480863825
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: richi_13
+      name: corsa_13
       rect:
         serializedVersion: 2
         x: 1014
@@ -451,10 +451,10 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 2b63f3f3ad41a004dacb4dc1ebb6002f
-      internalID: 1977823527
+      spriteID: 4fbe51ae14e7fba30800000000000000
+      internalID: 4233240996316834804
       vertices: []
       indices: 
       edges: []
@@ -463,7 +463,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 43da0fefa29518b459c70895b1ac8fb5
+    spriteID: 2aa1d7c3800dd6c46b62715bda5da272
     internalID: 0
     vertices: []
     indices: 
@@ -473,20 +473,20 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      richi_0: -1953706698
-      richi_1: -734191041
-      richi_10: -338593166
-      richi_11: -1266179344
-      richi_12: -923808533
-      richi_13: 1977823527
-      richi_2: -1730588790
-      richi_3: 1364698775
-      richi_4: -1879717592
-      richi_5: -497860164
-      richi_6: -13574030
-      richi_7: -1095113191
-      richi_8: -564971985
-      richi_9: -797909237
+      corsa_0: -8315147829809977716
+      corsa_1: 156651135221571733
+      corsa_10: 6295598201618203896
+      corsa_11: 2058159781911981806
+      corsa_12: -3443867057480863825
+      corsa_13: 4233240996316834804
+      corsa_2: -230956845047128131
+      corsa_3: -7688780346038672383
+      corsa_4: -6439090803485541916
+      corsa_5: -6321431563641269175
+      corsa_6: 2697428920773585555
+      corsa_7: -5609617109693347875
+      corsa_8: -213165818097702040
+      corsa_9: 8949004349671421728
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
