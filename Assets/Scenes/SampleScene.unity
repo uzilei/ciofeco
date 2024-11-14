@@ -301,7 +301,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   followSpeed: 0.1
-  offset: {x: 0, y: 6, z: -18}
+  offset: {x: 1, y: 1.5, z: -18}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -774,6 +774,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 12
+  recoilLength: 1
+  recoilFactor: 2
+  isRecoiling: 0
 --- !u!61 &1335929458
 BoxCollider2D:
   m_ObjectHideFlags: 0
