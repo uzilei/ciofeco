@@ -435,7 +435,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   followSpeed: 0.1
-  offset: {x: 0, y: 0, z: -10}
+  offset: {x: 0, y: 6, z: -18}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -690,7 +690,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 8
+  m_GravityScale: 4
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -833,14 +833,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6f80e89676802d4983fa58f4c2f490a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkspeed: 7
-  jumpForce: 20
+  walkspeed: 5
+  jumpForce: 12
   groundCheckPoint: {fileID: 2135941905}
   groundCheckY: 0.2
-  groundCheckX: 0.5
+  groundCheckX: 0.8
   whatIsGround:
     serializedVersion: 2
     m_Bits: 8
+  dashSpeed: 5
+  dashTime: 0.2
+  dashCooldown: 0.5
   FrontAttackTransform: {fileID: 21498441}
   UpAttackTransform: {fileID: 1801895338}
   FrontAttackArea: {x: 1.5, y: 1.25}
