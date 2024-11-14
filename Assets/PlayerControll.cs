@@ -12,6 +12,11 @@ public class PlayerControll : MonoBehaviour
     private float xAxis;
     private float yAxis;
     private float gravity;
+    
+    [Header("Health Settings")]
+    public int health;
+    public int maxHealth;
+    [Space(5)]
     Animator anim;
 
     private bool canDash = true;
@@ -19,7 +24,6 @@ public class PlayerControll : MonoBehaviour
     public static PlayerControll Instance;
 
     private bool isAttacking; // Indica se l'attacco è attivo
-    private float timeSinceAttack;
     private bool isMoving; // Indica se il giocatore si sta muovendo
 
     private void Awake()
@@ -175,11 +179,9 @@ public class PlayerControll : MonoBehaviour
 
     void Attack()
     {
-        timeSinceAttack += Time.deltaTime;
 
-        if (isAttacking && timeSinceAttack >= 1)
+        if (isAttacking)
         {
-            timeSinceAttack = 0;
             pState = PlayerState.Attacking; // Cambia lo stato per evitare altre animazioni
 
             if (yAxis == 0 || (yAxis < 0 && Grounded()))
@@ -199,7 +201,7 @@ public class PlayerControll : MonoBehaviour
 
     IEnumerator EndAttack()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.4f);
         isAttacking = false;
         pState = PlayerState.Idle; // Ritorna allo stato Idle al termine
     }
