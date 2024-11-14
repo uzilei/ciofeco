@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerControll : MonoBehaviour
@@ -9,8 +11,11 @@ public class PlayerControll : MonoBehaviour
 
     private float xAxis; // Holds horizontal input
     private float yAxis; // Holds vertical input
+    private float gravity;
     Animator anim;
 
+    private bool canDash = true; // Checks whether we are dodging or not
+    private bool dashed;
     public static PlayerControll Instance; // Singleton instance for easy access
 
     private void Awake() // Singleton pattern to ensure only one instance exists
@@ -32,6 +37,11 @@ public class PlayerControll : MonoBehaviour
     [SerializeField] private float groundCheckX = 0.5f;
     [SerializeField] private LayerMask whatIsGround;
 
+    [Header("Dash Settings")]
+    [SerializeField] private float dashSpeed;
+    [SerializeField] private float dashTime;
+    [SerializeField] private float dashCooldown;
+
     [Header("Attacking")]
     private bool isAttacking;
     private float timeSinceAttack; // Attack timing control
@@ -39,11 +49,16 @@ public class PlayerControll : MonoBehaviour
     [SerializeField] Vector2 FrontAttackArea, UpAttackArea;
     [SerializeField] LayerMask attackableLayer;
 
+    // Enum per lo stato del giocatore
+    private enum PlayerState { Idle, Walking, Jumping, Dashing }
+    private PlayerState pState = PlayerState.Idle;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        gravity = rb.gravityScale;
 
     }
 
@@ -58,10 +73,13 @@ public class PlayerControll : MonoBehaviour
     void Update()
     {
         GetInputs();
+        if (pState == PlayerState.Dashing) return;
         Move();
         Jump();
         flip();
         Attack();
+        StartDash();
+
     }
 
     void GetInputs()
@@ -90,6 +108,34 @@ public class PlayerControll : MonoBehaviour
         anim.SetBool("Walking", rb.linearVelocity.x != 0 && Grounded());
     }
 
+    void StartDash()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
+        {
+            Debug.Log("Dash iniziato");
+            StartCoroutine(Dash());
+            dashed = true;
+        }
+        if (Grounded())
+        {
+            dashed = false;
+        }
+    }
+
+    
+    IEnumerator Dash()
+    {
+        canDash = false;
+        pState = PlayerState.Dashing;
+        rb.gravityScale = 0;
+        rb.linearVelocity = new Vector2(transform.localScale.x * dashSpeed, 0);
+        Debug.Log("Dentro il coroutine Dash");
+        yield return new WaitForSeconds(dashTime);
+        rb.gravityScale = gravity;
+        pState = PlayerState.Idle;
+        yield return new WaitForSeconds(dashCooldown);
+        canDash = true;
+    }
     public bool Grounded()
     {
         if (Physics2D.Raycast(groundCheckPoint.position, Vector2.down, groundCheckY, whatIsGround)
