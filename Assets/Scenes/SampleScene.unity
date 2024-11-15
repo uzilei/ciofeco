@@ -710,7 +710,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   dashSpeed: 10
-  dashTime: 0.33
+  dashTime: 0.2
   dashCooldown: 2
   FrontAttackTransform: {fileID: 21498441}
   UpAttackTransform: {fileID: 1801895338}
