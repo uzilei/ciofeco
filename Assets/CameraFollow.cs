@@ -14,7 +14,7 @@ public class CameraFollow : MonoBehaviour {
     }
 
     // Update every frame
-    void Update() {
+    void FixedUpdate() {
         // Calculate target positon with offset (?)
         Vector3 targetPosition = PlayerControll.Instance.transform.position + offset;
 
