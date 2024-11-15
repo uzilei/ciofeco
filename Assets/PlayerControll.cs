@@ -82,6 +82,9 @@ public class PlayerControll : MonoBehaviour
     {
         GetInputs();
 
+        // Debug call TakeDamage()
+        if (Input.GetKeyDown("p")) TakeDamage(1);
+        
         if (pState == PlayerState.Dashing) return;
 
         Move();
@@ -267,5 +270,36 @@ public class PlayerControll : MonoBehaviour
                 objectsToHit[i].GetComponent<Enemy>().EnemyHit(damageTotal, (transform.position - objectsToHit[i].transform.position).normalized, 100);
             }
         }
+    }
+    public void TakeDamage(int damage)
+    {
+        if (pState == PlayerState.Dashing)
+        {
+            Debug.Log("Dash invincibility");
+            return;
+        }
+
+        health -= damage;
+
+        if (health <= 0)
+        {
+            health = 0;
+            Debug.Log("Player is dead.");
+            anim.SetTrigger("Death");
+            StartCoroutine(ExitGameAfterDelay());
+        }
+        else
+        {
+            Debug.Log($"Player took {damage} damage. Current health: {health}");
+        }
+    }
+    private IEnumerator ExitGameAfterDelay()
+    {
+        yield return new WaitForSeconds(2.0f); // Adjust delay as needed for the animation duration
+        Debug.Log("Exiting game.");
+        Application.Quit();
+        #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false; // This line is for testing in the Unity editor
+        #endif
     }
 }
