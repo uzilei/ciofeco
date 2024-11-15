@@ -44,7 +44,7 @@ public class PlayerControll : MonoBehaviour {
     [SerializeField] private float dashTime;
     [SerializeField] private float dashCooldown;
 
-    [Header("Attacking")]
+    [Header("Attack Settings")]
     [SerializeField] Transform FrontAttackTransform, UpAttackTransform;
     [SerializeField] Vector2 FrontAttackArea, UpAttackArea;
     [SerializeField] LayerMask attackableLayer;
@@ -52,9 +52,16 @@ public class PlayerControll : MonoBehaviour {
     [SerializeField] int extraComboDamage;
     [SerializeField] private float comboCooldown = 1.5f;
     [SerializeField] private float comboResetTime = 1.5f;
-    [SerializeField] float playerHealth;
     private bool comboCooldownActive = false;
-    private enum PlayerState { Idle, Moving, Jumping, Dashing, Attacking, Dead }
+
+    [Header("Knockback and iFrames Settings")]
+    [SerializeField] private float knockbackForce = 10f;  // Knockback force
+    [SerializeField] private float knockbackDuration = 0.1f;
+    [SerializeField] private float iFrameDuration = 1f;
+    private float iFrameTimer = 0f;
+    private float knockbackTimer = 0f;
+
+    private enum PlayerState { Idle, Moving, Jumping, Dashing, Attacking, Dead, KnockedBack }
     private PlayerState pState = PlayerState.Idle;
 
     void Start() {
@@ -71,16 +78,16 @@ public class PlayerControll : MonoBehaviour {
 
     void Update() {
         GetInputs();
+    }
 
-        // Debug call TakeDamage()
-        if (Input.GetKeyDown("p")) TakeDamage(1);
-
-        if (pState == PlayerState.Dashing || pState == PlayerState.Dead) return;
-
-        Move();
+    void GetInputs() {
+        xAxis = Input.GetAxisRaw("Horizontal");
+        yAxis = Input.GetAxisRaw("Vertical");
         Jump();
-        Flip();
-        StartDash();
+
+        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash && pState != PlayerState.Attacking) {
+            StartCoroutine(Dash());
+        }
 
         if (Input.GetKeyDown("k") && pState != PlayerState.Attacking && !comboCooldownActive) {
             if (yAxis > 0 && Grounded()) {
@@ -90,20 +97,35 @@ public class PlayerControll : MonoBehaviour {
                 Attack();
             }
         }
+    }
 
-        // Reset attack combo logic, more efficient if in Attack() method, but more reliable here
+    void FixedUpdate() {
         timeSinceAttack += Time.deltaTime;
+        if (pState == PlayerState.Dashing || pState == PlayerState.Dead) return;
+
         if (comboCooldownActive && timeSinceAttack >= comboCooldown) {
             ResetCombo(); // Reset combo if comboCooldownActive is true and timeSinceAttack reaches comboCooldownTime 
         }
         else if (!comboCooldownActive && timeSinceAttack >= comboResetTime) {
             ResetCombo(); // Reset combo if no attack is performed within comboResetTime
         }
-    }
 
-    void GetInputs() {
-        xAxis = Input.GetAxisRaw("Horizontal");
-        yAxis = Input.GetAxisRaw("Vertical");
+        if (iFrameTimer > 0) {
+            iFrameTimer -= Time.deltaTime;
+        }
+
+        if (knockbackTimer > 0) {
+            knockbackTimer -= Time.deltaTime;
+            if (knockbackTimer <= 0) {
+                pState = PlayerState.Idle;
+            }
+            return;
+        }
+        
+        Move();
+        if (pState != PlayerState.Attacking) {
+            Flip(); 
+        }
     }
 
     void Flip() {
@@ -136,23 +158,19 @@ public class PlayerControll : MonoBehaviour {
         }
     }
 
-    void StartDash() {
-        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash && pState == PlayerState.Attacking) {
-            StartCoroutine(Dash());
-        }
-    }
-
     IEnumerator Dash() {
         canDash = false;
         pState = PlayerState.Dashing;
+        anim.SetBool("Dashing", true);
         rb.gravityScale = 0;
         rb.linearVelocity = new Vector2(transform.localScale.x * dashSpeed, 0);
-        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Default"), LayerMask.NameToLayer("attackable"), true);
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("attackable"), true);
 
         yield return new WaitForSeconds(dashTime);
         rb.gravityScale = gravity;
         pState = PlayerState.Idle;
-        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Default"), LayerMask.NameToLayer("attackable"), false);
+        anim.SetBool("Dashing", false);
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("attackable"), false);
 
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
@@ -182,6 +200,7 @@ public class PlayerControll : MonoBehaviour {
         pState = PlayerState.Attacking;
         timeSinceAttack = 0f;
         attackCount++;
+
         if (attackCount == 1) {
             anim.SetTrigger("FrontAttacking");
             Debug.Log("Attack1");
@@ -200,7 +219,7 @@ public class PlayerControll : MonoBehaviour {
         }
         if (!Grounded()) { // Stop vertical movement when attacking in the air 
             anim.SetBool("Jumping", false);
-            rb.linearVelocity = new Vector2(0, 0);
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0);
             rb.gravityScale = 0;
         }
         StartCoroutine(EndAttack());
@@ -238,28 +257,42 @@ public class PlayerControll : MonoBehaviour {
             }
         }
     }
-    public void TakeDamage(int damage) {
+    public void TakeDamage(int damage, Vector2 hitDirection) {
+        if (iFrameTimer > 0f) {
+            return;
+        }
+
         if (pState == PlayerState.Dashing) {
-            Debug.Log("Dash invincibility");
+            Debug.Log("Dash invincibility, no damage");
             return;
         }
 
         health -= damage;
+        iFrameTimer = iFrameDuration;
 
         if (health <= 0) {
             health = 0;
-            Debug.Log("Player is dead.");
+            Debug.Log("Player is dead");
             pState = PlayerState.Dead;
             anim.SetTrigger("Death");
             StartCoroutine(ExitGameAfterDelay());
         }
         else {
-            Debug.Log($"Player took {damage} damage. Current health: {health}");
+            ApplyKnockback(hitDirection);
+            Debug.Log($"Player took {damage} damage, Current health: {health}");
         }
     }
+
+    public void ApplyKnockback(Vector2 direction) {
+        pState = PlayerState.KnockedBack;
+        knockbackTimer = knockbackDuration;
+        rb.linearVelocity = Vector2.zero;
+        rb.AddForce(direction * knockbackForce, ForceMode2D.Impulse);
+    }
+
     IEnumerator ExitGameAfterDelay() {
         yield return new WaitForSeconds(2.0f); // Adjust delay as needed for the animation duration
-        Debug.Log("Exiting game.");
+        Debug.Log("Exiting game in 2 seconds");
         Application.Quit();
     #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false; // This line is for testing in the Unity editor
