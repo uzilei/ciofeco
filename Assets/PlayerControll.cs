@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerControll : MonoBehaviour
-{
+public class PlayerControll : MonoBehaviour {
     [Header("Horizontal Movement Setting")]
     private Rigidbody2D rb;
 
@@ -12,7 +11,7 @@ public class PlayerControll : MonoBehaviour
     private float xAxis;
     private float yAxis;
     private float gravity;
-    
+
     [Header("Health Settings")]
     public int health;
     public int maxHealth;
@@ -21,20 +20,14 @@ public class PlayerControll : MonoBehaviour
 
     private bool canDash = true;
     public static PlayerControll Instance;
-
-    private bool isAttacking;
-    private bool isMoving;
-    private int attackCount = 0;
+    public int attackCount = 0;
     private float timeSinceAttack = 0f;
 
-    private void Awake()
-    {
-        if (Instance != null && Instance != this)
-        {
+    private void Awake() {
+        if (Instance != null && Instance != this) {
             Destroy(gameObject);
         }
-        else
-        {
+        else {
             Instance = this;
         }
     }
@@ -61,69 +54,59 @@ public class PlayerControll : MonoBehaviour
     [SerializeField] private float comboResetTime = 1.5f;
     [SerializeField] float playerHealth;
     private bool comboCooldownActive = false;
-    private enum PlayerState { Idle, Walking, Jumping, Dashing, Attacking }
+    private enum PlayerState { Idle, Moving, Jumping, Dashing, Attacking, Dead }
     private PlayerState pState = PlayerState.Idle;
 
-    void Start()
-    {
+    void Start() {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         gravity = rb.gravityScale;
     }
 
-    void OnDrawGizmos()
-    {
+    void OnDrawGizmos() {
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(FrontAttackTransform.position, FrontAttackArea);
         Gizmos.DrawWireCube(UpAttackTransform.position, UpAttackArea);
     }
 
-    void Update()
-    {
+    void Update() {
         GetInputs();
 
         // Debug call TakeDamage()
         if (Input.GetKeyDown("p")) TakeDamage(1);
-        
-        if (pState == PlayerState.Dashing) return;
+
+        if (pState == PlayerState.Dashing || pState == PlayerState.Dead) return;
 
         Move();
         Jump();
         Flip();
         StartDash();
 
-        if (Input.GetKeyDown("k") && !isAttacking && !comboCooldownActive)
-        {
-            if (yAxis > 0 && Grounded())
-            {
+        if (Input.GetKeyDown("k") && pState != PlayerState.Attacking && !comboCooldownActive) {
+            if (yAxis > 0 && Grounded()) {
                 UpAttack();
             }
-        else
-            {
+            else {
                 Attack();
             }
         }
 
         // Reset attack combo logic, more efficient if in Attack() method, but more reliable here
         timeSinceAttack += Time.deltaTime;
-        if (comboCooldownActive && timeSinceAttack >= comboCooldown) // Reset combo if comboCooldownActive is true and timeSinceAttack reaches comboCooldownTime
-        {
-            ResetCombo();
+        if (comboCooldownActive && timeSinceAttack >= comboCooldown) {
+            ResetCombo(); // Reset combo if comboCooldownActive is true and timeSinceAttack reaches comboCooldownTime 
         }
-        else if (!comboCooldownActive && timeSinceAttack >= comboResetTime) // Reset combo if no attack is performed within comboResetTime
-        {
-            ResetCombo();
+        else if (!comboCooldownActive && timeSinceAttack >= comboResetTime) {
+            ResetCombo(); // Reset combo if no attack is performed within comboResetTime
         }
     }
 
-    void GetInputs()
-    {
+    void GetInputs() {
         xAxis = Input.GetAxisRaw("Horizontal");
         yAxis = Input.GetAxisRaw("Vertical");
     }
 
-    void Flip()
-    {
+    void Flip() {
         if (xAxis < 0)
         {
             transform.localScale = new Vector2(-2, transform.localScale.y);
@@ -134,37 +117,37 @@ public class PlayerControll : MonoBehaviour
         }
     }
 
-    private void Move()
-    {
-        isMoving = xAxis != 0;
-
-        if (!isAttacking)
-        {
-            rb.linearVelocity = new Vector2(walkspeed * xAxis, rb.linearVelocity.y);
-            anim.SetBool("Walking", isMoving && Grounded());
+    private void Move() {
+        if (pState != PlayerState.Attacking) {
+            if (xAxis != 0) {
+                pState = PlayerState.Moving;
+                rb.linearVelocity = new Vector2(walkspeed * xAxis, rb.linearVelocity.y);
+                anim.SetBool("Moving", Grounded());
+            }
+            else {
+                pState = PlayerState.Idle;
+                rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+                anim.SetBool("Moving", false);
+            }
         }
-        else // Stops movement during attack
-        {
-            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y); 
-            anim.SetBool("Walking", false);
+        else {
+            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y); // Stops movement during attack
+            anim.SetBool("Moving", false);
         }
     }
 
-    void StartDash()
-    {
-        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash && !isAttacking)
-        {
+    void StartDash() {
+        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash && pState == PlayerState.Attacking) {
             StartCoroutine(Dash());
         }
     }
 
-    IEnumerator Dash()
-    {
+    IEnumerator Dash() {
         canDash = false;
         pState = PlayerState.Dashing;
         rb.gravityScale = 0;
         rb.linearVelocity = new Vector2(transform.localScale.x * dashSpeed, 0);
-        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Default"), LayerMask.NameToLayer("attackable"), true); 
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Default"), LayerMask.NameToLayer("attackable"), true);
 
         yield return new WaitForSeconds(dashTime);
         rb.gravityScale = gravity;
@@ -175,24 +158,19 @@ public class PlayerControll : MonoBehaviour
         canDash = true;
     }
 
-    public bool Grounded()
-    {
+    public bool Grounded() {
         return Physics2D.Raycast(groundCheckPoint.position, Vector2.down, groundCheckY, whatIsGround)
             || Physics2D.Raycast(groundCheckPoint.position + new Vector3(groundCheckX, 0, 0), Vector2.down, groundCheckY, whatIsGround)
             || Physics2D.Raycast(groundCheckPoint.position + new Vector3(-groundCheckX, 0, 0), Vector2.down, groundCheckY, whatIsGround);
     }
 
-    void Jump()
-    {
-        if (!isAttacking)
-        {
-            if (Input.GetButtonUp("Jump") && rb.linearVelocity.y > 0)
-            {
+    void Jump() {
+        if (pState != PlayerState.Attacking) {
+            if (Input.GetButtonUp("Jump") && rb.linearVelocity.y > 0) {
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0);
             }
 
-            if (Input.GetButtonDown("Jump") && Grounded())
-            {
+            if (Input.GetButtonDown("Jump") && Grounded()) {
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
             }
 
@@ -200,41 +178,35 @@ public class PlayerControll : MonoBehaviour
         }
     }
 
-    void Attack()
-    {
-        isAttacking = true;
+    void Attack() {
+        pState = PlayerState.Attacking;
         timeSinceAttack = 0f;
         attackCount++;
-        if (attackCount == 1)
-        {
+        if (attackCount == 1) {
             anim.SetTrigger("FrontAttacking");
             Debug.Log("Attack1");
             Hit(FrontAttackTransform, FrontAttackArea, damage);
         }
-        else if (attackCount == 2)
-        {
+        else if (attackCount == 2) {
             anim.SetTrigger("FrontAttacking");
             Debug.Log("Attack2");
             Hit(FrontAttackTransform, FrontAttackArea, damage);
         }
-        else if (attackCount == 3)
-        {
+        else if (attackCount == 3) {
             anim.SetTrigger("FrontAttacking");
             comboCooldownActive = true; // Activate longer cooldown only after third attack
             Debug.Log("Attack3");
             Hit(FrontAttackTransform, FrontAttackArea, damage + extraComboDamage);
         }
-        if (!Grounded()) // Stop vertical movement when attacking in the air
-    {
-        anim.SetBool("Jumping", false);
-        rb.linearVelocity = new Vector2(0, 0);
-        rb.gravityScale = 0;
+        if (!Grounded()) { // Stop vertical movement when attacking in the air 
+            anim.SetBool("Jumping", false);
+            rb.linearVelocity = new Vector2(0, 0);
+            rb.gravityScale = 0;
+        }
+        StartCoroutine(EndAttack());
     }
-            StartCoroutine(EndAttack());
-    }
-    void UpAttack()
-    {
-        isAttacking = true;
+    void UpAttack() {
+        pState = PlayerState.Attacking;
         timeSinceAttack = 0f;
         comboCooldownActive = true;
         anim.SetTrigger("UpAttacking");
@@ -243,63 +215,54 @@ public class PlayerControll : MonoBehaviour
         StartCoroutine(EndAttack());
     }
 
-    IEnumerator EndAttack()
-    {
+    IEnumerator EndAttack() {
         yield return new WaitForSeconds(0.4f); // Cooldown between non-combo attacks
-        isAttacking = false;
-        rb.gravityScale = gravity;
         pState = PlayerState.Idle;
+        rb.gravityScale = gravity;
     }
 
-    private void ResetCombo()
-    {
+    private void ResetCombo() {
         Debug.Log("Combo Reset");
         attackCount = 0;
         comboCooldownActive = false;
         timeSinceAttack = 0f;
     }
 
-    void Hit(Transform _AttackTransform, Vector2 _AttackArea, int damageTotal)
-    {
+    void Hit(Transform _AttackTransform, Vector2 _AttackArea, int damageTotal) {
         Collider2D[] objectsToHit = Physics2D.OverlapBoxAll(_AttackTransform.position, _AttackArea, 0, attackableLayer);
 
-        for (int i = 0; i < objectsToHit.Length; i++)
-        {
+        for (int i = 0; i < objectsToHit.Length; i++) {
             if (objectsToHit[i].GetComponent<Enemy>() != null)
             {
                 objectsToHit[i].GetComponent<Enemy>().EnemyHit(damageTotal, (transform.position - objectsToHit[i].transform.position).normalized, 100);
             }
         }
     }
-    public void TakeDamage(int damage)
-    {
-        if (pState == PlayerState.Dashing)
-        {
+    public void TakeDamage(int damage) {
+        if (pState == PlayerState.Dashing) {
             Debug.Log("Dash invincibility");
             return;
         }
 
         health -= damage;
 
-        if (health <= 0)
-        {
+        if (health <= 0) {
             health = 0;
             Debug.Log("Player is dead.");
+            pState = PlayerState.Dead;
             anim.SetTrigger("Death");
             StartCoroutine(ExitGameAfterDelay());
         }
-        else
-        {
+        else {
             Debug.Log($"Player took {damage} damage. Current health: {health}");
         }
     }
-    private IEnumerator ExitGameAfterDelay()
-    {
+    IEnumerator ExitGameAfterDelay() {
         yield return new WaitForSeconds(2.0f); // Adjust delay as needed for the animation duration
         Debug.Log("Exiting game.");
         Application.Quit();
-        #if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false; // This line is for testing in the Unity editor
-        #endif
+    #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false; // This line is for testing in the Unity editor
+    #endif
     }
 }
