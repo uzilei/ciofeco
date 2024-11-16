@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour {
     [SerializeField] protected float recoilFactor;
     [SerializeField] protected float comboRecoilMultiplier;
     [SerializeField] protected bool isRecoiling = false;
-    [SerializeField] protected PlayerControll player;
+    [SerializeField] protected PlayerController player;
     [SerializeField] protected float speed;
 
     protected float recoilTimer;
@@ -21,7 +21,7 @@ public class Enemy : MonoBehaviour {
 
     protected virtual void Awake() {
         rb = GetComponent<Rigidbody2D>();
-        player = PlayerControll.Instance;
+        player = PlayerController.Instance;
         if (rb != null) {
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         }
@@ -57,7 +57,7 @@ public class Enemy : MonoBehaviour {
 
         if (hit != null) {
             Vector2 hitDirection = (hit.transform.position - transform.position).normalized;
-            PlayerControll player = hit.GetComponent<PlayerControll>();
+            PlayerController player = hit.GetComponent<PlayerController>();
             if (player != null) {
                 player.TakeDamage(1, hitDirection);
             }
@@ -68,7 +68,7 @@ public class Enemy : MonoBehaviour {
         health -= _damageDone;
         float finalHitForce = _hitforce;
 
-        if (player != null && player.attackCount == 3) {
+        if (player.attackCount == 3) {
             finalHitForce *= comboRecoilMultiplier;
         }
 
