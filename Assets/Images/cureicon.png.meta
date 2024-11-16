@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: f1b8a072b99522041a0f1955061308f3
+guid: fa0e99b3049a3704db05c71c7e93abbe
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -880559589973423844
-    second: HealthBar (1)_0
+      213: 4237854486601445572
+    second: un_simbolo_magico_di_guarigione_in_pixel_art_semplice-removebg-preview_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -72,10 +72,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: HealthBar (1)_0
+      name: un_simbolo_magico_di_guarigione_in_pixel_art_semplice-removebg-preview_0
       rect:
         serializedVersion: 2
-        x: 83
-        y: 36
-        width: 199
-        height: 27
+        x: 17
+        y: 8
+        width: 443
+        height: 476
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c190214e7bf97c3f0800000000000000
-      internalID: -880559589973423844
+      spriteID: 4c0bca3d332efca30800000000000000
+      internalID: 4237854486601445572
       vertices: []
       indices: 
       edges: []
@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      un_simbolo_magico_di_guarigione_in_pixel_art_semplice-removebg-preview_0: 4237854486601445572
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

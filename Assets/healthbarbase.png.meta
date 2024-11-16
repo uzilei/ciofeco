@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Barra-vita-vuota_0: 3361295552437578115
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
