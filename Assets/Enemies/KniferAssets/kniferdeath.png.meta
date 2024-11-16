@@ -1,0 +1,594 @@
+fileFormatVersion: 2
+guid: 8655a78ab315bc548a2f1fe6e01c4054
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7412800771335909606
+    second: kniferdeath_0
+  - first:
+      213: 7719980151479856661
+    second: kniferdeath_1
+  - first:
+      213: -896553676160992634
+    second: kniferdeath_2
+  - first:
+      213: -6902113789752984334
+    second: kniferdeath_3
+  - first:
+      213: -9038084687221777050
+    second: kniferdeath_4
+  - first:
+      213: 6973471551330794558
+    second: kniferdeath_5
+  - first:
+      213: 203934653234451672
+    second: kniferdeath_6
+  - first:
+      213: 116846083654741472
+    second: kniferdeath_7
+  - first:
+      213: 5949690625937511963
+    second: kniferdeath_8
+  - first:
+      213: -496137506779123842
+    second: kniferdeath_9
+  - first:
+      213: -1405019180633685172
+    second: kniferdeath_10
+  - first:
+      213: 5603804429814506303
+    second: kniferdeath_11
+  - first:
+      213: -1074750525769829890
+    second: kniferdeath_12
+  - first:
+      213: 335619254179693750
+    second: kniferdeath_13
+  - first:
+      213: 7672781999822414882
+    second: kniferdeath_14
+  - first:
+      213: 717189333812436686
+    second: kniferdeath_15
+  - first:
+      213: -5686877281633074784
+    second: kniferdeath_16
+  - first:
+      213: 138105835116662871
+    second: kniferdeath_17
+  - first:
+      213: 6346207459723331906
+    second: kniferdeath_18
+  - first:
+      213: -6471377949028028134
+    second: kniferdeath_19
+  - first:
+      213: 2579899142184432629
+    second: kniferdeath_20
+  - first:
+      213: -4783668990670750261
+    second: kniferdeath_21
+  - first:
+      213: 3890787702926905409
+    second: kniferdeath_22
+  - first:
+      213: 199995415976501515
+    second: kniferdeath_23
+  - first:
+      213: 8647243454421987572
+    second: kniferdeath_24
+  - first:
+      213: -1272670884713120917
+    second: kniferdeath_25
+  - first:
+      213: 5347010206524602737
+    second: kniferdeath_26
+  - first:
+      213: 4579845593525479896
+    second: kniferdeath_27
+  - first:
+      213: -7674126288986172977
+    second: kniferdeath_28
+  - first:
+      213: 6082022657516676896
+    second: kniferdeath_29
+  - first:
+      213: 6264994860506300800
+    second: kniferdeath_30
+  - first:
+      213: 3455312075068421888
+    second: kniferdeath_31
+  - first:
+      213: -6984733887994654074
+    second: kniferdeath_32
+  - first:
+      213: 6830153569292247841
+    second: kniferdeath_33
+  - first:
+      213: 4259824675141047872
+    second: kniferdeath_34
+  - first:
+      213: 8876460578883698010
+    second: kniferdeath_35
+  - first:
+      213: -3305368037736995051
+    second: kniferdeath_36
+  - first:
+      213: -2355963840049655719
+    second: kniferdeath_37
+  - first:
+      213: -3956412611808720202
+    second: kniferdeath_38
+  - first:
+      213: -7341719736366095416
+    second: kniferdeath_39
+  - first:
+      213: 7330064573984035151
+    second: kniferdeath_40
+  - first:
+      213: 8359612161390387423
+    second: kniferdeath_41
+  - first:
+      213: -7316426096282894150
+    second: kniferdeath_42
+  - first:
+      213: -7258404809846024252
+    second: kniferdeath_43
+  - first:
+      213: -1138750669866840652
+    second: kniferdeath_44
+  - first:
+      213: -8181609296046338190
+    second: kniferdeath_45
+  - first:
+      213: 2062119995336366492
+    second: kniferdeath_46
+  - first:
+      213: 3937076358573195593
+    second: kniferdeath_47
+  - first:
+      213: -4658788085708438356
+    second: kniferdeath_48
+  - first:
+      213: -2093369315674305353
+    second: kniferdeath_49
+  - first:
+      213: -8740797110804031782
+    second: kniferdeath_50
+  - first:
+      213: 2291101991384163777
+    second: kniferdeath_51
+  - first:
+      213: -2153663783375349910
+    second: kniferdeath_52
+  - first:
+      213: 1735237027312131667
+    second: kniferdeath_53
+  - first:
+      213: -7378141701411148311
+    second: kniferdeath_54
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: kniferdeath_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1f08c129f0702990800000000000000
+      internalID: -7412800771335909606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kniferdeath_1
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51ee50aab01e22b60800000000000000
+      internalID: 7719980151479856661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kniferdeath_2
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68a7a528e2dce83f0800000000000000
+      internalID: -896553676160992634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kniferdeath_3
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2fcb272c314c630a0800000000000000
+      internalID: -6902113789752984334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kniferdeath_4
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66d9f30ecd5429280800000000000000
+      internalID: -9038084687221777050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kniferdeath_5
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3c3d5ccd6fb6c060800000000000000
+      internalID: 6973471551330794558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kniferdeath_6
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d49e639c7584d200800000000000000
+      internalID: 203934653234451672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kniferdeath_7
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ede2add4ee1f9100800000000000000
+      internalID: 116846083654741472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kniferdeath_8
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b161a7af91c819250800000000000000
+      internalID: 5949690625937511963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kniferdeath_9
+      rect:
+        serializedVersion: 2
+        x: 1800
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7faea4f09d5d19f0800000000000000
+      internalID: -496137506779123842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kniferdeath_10
+      rect:
+        serializedVersion: 2
+        x: 2000
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4308b3df7e508ce0800000000000000
+      internalID: -1405019180633685172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kniferdeath_11
+      rect:
+        serializedVersion: 2
+        x: 2200
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f33aadd4076b4cd40800000000000000
+      internalID: 5603804429814506303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kniferdeath_12
+      rect:
+        serializedVersion: 2
+        x: 2400
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef133515718b511f0800000000000000
+      internalID: -1074750525769829890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 8c33a3047b1a2694099974720fc31236
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      kniferdeath_0: -7412800771335909606
+      kniferdeath_1: 7719980151479856661
+      kniferdeath_10: -1405019180633685172
+      kniferdeath_11: 5603804429814506303
+      kniferdeath_12: -1074750525769829890
+      kniferdeath_2: -896553676160992634
+      kniferdeath_3: -6902113789752984334
+      kniferdeath_4: -9038084687221777050
+      kniferdeath_5: 6973471551330794558
+      kniferdeath_6: 203934653234451672
+      kniferdeath_7: 116846083654741472
+      kniferdeath_8: 5949690625937511963
+      kniferdeath_9: -496137506779123842
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
