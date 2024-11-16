@@ -168,7 +168,7 @@ public class PlayerController : MonoBehaviour {
     IEnumerator Dash() {
         canDash = false;
         pState = PlayerState.Dashing;
-        anim.SetBool("Dashing", true);
+        anim.SetTrigger("Dashing");
         rb.gravityScale = 0;
         rb.linearVelocity = new Vector2(transform.localScale.x * dashSpeed, 0);
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("attackable"), true);
@@ -176,7 +176,6 @@ public class PlayerController : MonoBehaviour {
         yield return new WaitForSeconds(dashTime);
         rb.gravityScale = gravity;
         pState = PlayerState.Idle;
-        anim.SetBool("Dashing", false);
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("attackable"), false);
 
         yield return new WaitForSeconds(dashCooldown);
