@@ -18,7 +18,6 @@ public class PlayerController : MonoBehaviour {
     public int heals;
     private int healingAmount = 5;
 
-
     //Life bar management
     public delegate void OnHealthChangedDelegate();
     [HideInInspector] public OnHealthChangedDelegate OnHealthChangedCallBack;
@@ -34,19 +33,18 @@ public class PlayerController : MonoBehaviour {
     private void Awake() {
         if (Instance != null && Instance != this) {
             Destroy(gameObject);
-        } 
-        else {
+        } else {
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
     }
 
     [Header("Ground Check Settings")]
-    [SerializeField] private float jumpForce = 45;
+    [SerializeField] private float jumpForce;
     [SerializeField] private Transform groundCheckPoint;
     [SerializeField] private float groundCheckY = 0.2f;
     [SerializeField] private float groundCheckX = 0.5f;
-    [SerializeField] private LayerMask whatIsGround;
+    [SerializeField] private LayerMask groundLayer;
 
     [Header("Dash Settings")]
     [SerializeField] private float dashSpeed;
@@ -64,9 +62,9 @@ public class PlayerController : MonoBehaviour {
     private bool comboCooldownActive = false;
 
     [Header("Knockback and iFrames Settings")]
-    [SerializeField] private float knockbackForce = 10f;
-    [SerializeField] private float knockbackDuration = 0.1f;
-    [SerializeField] private float iFrameDuration = 1f;
+    [SerializeField] private float knockbackForce;
+    [SerializeField] private float knockbackDuration;
+    [SerializeField] private float iFrameDuration;
     private float iFrameTimer = 0f;
     private float knockbackTimer = 0f;
 
@@ -101,11 +99,9 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetKeyDown("k")) {
             if (yAxis > 0 && Grounded()) {
                 UpAttack();
-            }
-            else if (!Grounded()){
+            } else if (!Grounded()) {
                 AirAttack();
-            }
-            else {
+            } else {
                 Attack();
             }
         }
@@ -122,8 +118,7 @@ public class PlayerController : MonoBehaviour {
 
         if (comboCooldownActive && timeSinceAttack >= comboCooldown) {
             ResetCombo();
-        }
-        else if (!comboCooldownActive && timeSinceAttack >= comboResetTime) {
+        } else if (!comboCooldownActive && timeSinceAttack >= comboResetTime) {
             ResetCombo();
         }
 
@@ -142,8 +137,7 @@ public class PlayerController : MonoBehaviour {
         if (rb.linearVelocity.y < 0 && !Grounded() && pState != PlayerState.Attacking) {
             pState = PlayerState.Falling;
             anim.SetBool("Falling", true);
-        }
-        else {
+        } else {
             pState = PlayerState.Idle;
             anim.SetBool("Falling", false);
         }
@@ -158,8 +152,7 @@ public class PlayerController : MonoBehaviour {
         if (xAxis < 0)
         {
             transform.localScale = new Vector2(-Mathf.Abs(transform.localScale.x), transform.localScale.y);
-        }
-        else if (xAxis > 0)
+        } else if (xAxis > 0)
         {
             transform.localScale = new Vector2(Mathf.Abs(transform.localScale.x), transform.localScale.y);
         }
@@ -171,14 +164,12 @@ public class PlayerController : MonoBehaviour {
                 pState = PlayerState.Moving;
                 rb.linearVelocity = new Vector2(walkspeed * xAxis, rb.linearVelocity.y);
                 anim.SetBool("Moving", Grounded());
-            }
-            else {
+            } else {
                 pState = PlayerState.Idle;
                 rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
                 anim.SetBool("Moving", false);
             }
-        }
-        else {
+        } else {
             rb.linearVelocity = new Vector2(0, rb.linearVelocity.y); // Stops movement during attack
             anim.SetBool("Moving", false);
         }
@@ -202,9 +193,9 @@ public class PlayerController : MonoBehaviour {
     }
 
     public bool Grounded() {
-        return Physics2D.Raycast(groundCheckPoint.position, Vector2.down, groundCheckY, whatIsGround)
-            || Physics2D.Raycast(groundCheckPoint.position + new Vector3(groundCheckX, 0, 0), Vector2.down, groundCheckY, whatIsGround)
-            || Physics2D.Raycast(groundCheckPoint.position + new Vector3(-groundCheckX, 0, 0), Vector2.down, groundCheckY, whatIsGround);
+        return Physics2D.Raycast(groundCheckPoint.position, Vector2.down, groundCheckY, groundLayer)
+            || Physics2D.Raycast(groundCheckPoint.position + new Vector3(groundCheckX, 0, 0), Vector2.down, groundCheckY, groundLayer)
+            || Physics2D.Raycast(groundCheckPoint.position + new Vector3(-groundCheckX, 0, 0), Vector2.down, groundCheckY, groundLayer);
     }
 
     void Jump() {
@@ -226,42 +217,36 @@ public class PlayerController : MonoBehaviour {
 
         if (attackCount == 1) {
             anim.SetTrigger("Attack1");
-            Debug.Log("Attack1");
             Hit(FrontAttackTransform, FrontAttackArea, damage);
-        }
-        else if (attackCount == 2) {
+        } else if (attackCount == 2) {
             anim.SetTrigger("Attack2");
-            Debug.Log("Attack2");
             Hit(FrontAttackTransform, FrontAttackArea, damage);
-        }
-        else if (attackCount == 3) {
+        } else if (attackCount == 3) {
             anim.SetTrigger("Attack3");
             comboCooldownActive = true;
-            Debug.Log("Attack3");
             Hit(FrontAttackTransform, FrontAttackArea, damage + extraComboDamage);
         }
+
         StartCoroutine(EndAttack());
     }
 
     void AirAttack() {
-        if (pState == PlayerState.Attacking) return;
+        if (pState == PlayerState.Attacking || comboCooldownActive) return;
         pState = PlayerState.Attacking;
         timeSinceAttack = 0f;
         comboCooldownActive = true;
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0);
         anim.SetTrigger("AttackAir");
-        Debug.Log("AttackAir");
         rb.gravityScale = 0;
         Hit(FrontAttackTransform, FrontAttackArea, damage + extraComboDamage);
         StartCoroutine(EndAttack());
     }
     void UpAttack() {
-        if (pState == PlayerState.Attacking) return;
+        if (pState == PlayerState.Attacking || comboCooldownActive) return;
         pState = PlayerState.Attacking;
         timeSinceAttack = 0f;
         comboCooldownActive = true;
         anim.SetTrigger("AttackUp");
-        Debug.Log("AttackUp");
         Hit(UpAttackTransform, UpAttackArea, damage + extraComboDamage);
         StartCoroutine(EndAttack());
     }
@@ -288,7 +273,8 @@ public class PlayerController : MonoBehaviour {
             }
         }
     }
-    public void TakeDamage(int damage, Vector2 hitDirection) {
+
+    public void TakeDamageEnemy(int damage, Vector2 hitDirection) {
         if (iFrameTimer > 0f) {
             return;
         }
@@ -305,8 +291,7 @@ public class PlayerController : MonoBehaviour {
             health = 0;
             pState = PlayerState.Dead;
             anim.SetTrigger("Dead");
-        }
-        else {
+        } else {
             ApplyKnockback(hitDirection);
             Debug.Log($"Player took {damage} damage, Current health: {health}");
         }
@@ -319,11 +304,17 @@ public class PlayerController : MonoBehaviour {
         rb.AddForce(direction * knockbackForce, ForceMode2D.Impulse);
     }
 
-    public void ExitGame() {
-        Application.Quit();
-    #if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false; // This line is for testing in the Unity editor
-    #endif
+    public void TakeDamageAbsolute(int damage, Vector2 hitDirection) {
+        health -= damage;
+
+        if (health <= 0) {
+            health = 0;
+            pState = PlayerState.Dead;
+            anim.SetTrigger("Dead");
+        } else {
+            ApplyKnockback(hitDirection);
+            Debug.Log($"Player took {damage} absolute damage, Current health: {health}");
+        }
     }
 
     private void Heal() {
@@ -331,8 +322,7 @@ public class PlayerController : MonoBehaviour {
             Debug.Log("Time since last heal too short!");
             Debug.Log(timeSinceHeal);
             return;
-        }
-        else {
+        } else {
             timeSinceHeal = 0f;
             health += healingAmount;
             if (health > maxHealth) {
@@ -347,6 +337,12 @@ public class PlayerController : MonoBehaviour {
     private void endHeal() {
         // Called by animation
         pState = PlayerState.Idle;
-        Debug.Log("End heal");
+    }
+    
+    public void ExitGame() {
+        Application.Quit();
+    #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false; // This line is for testing in the Unity editor
+    #endif
     }
 }
