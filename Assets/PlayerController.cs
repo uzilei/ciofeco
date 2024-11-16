@@ -34,9 +34,10 @@ public class PlayerController : MonoBehaviour {
     private void Awake() {
         if (Instance != null && Instance != this) {
             Destroy(gameObject);
-        }
+        } 
         else {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
     }
 
@@ -110,7 +111,6 @@ public class PlayerController : MonoBehaviour {
 
     void FixedUpdate() {
         timeSinceAttack += Time.deltaTime;
-        Debug.Log(Grounded());
     if (pState == PlayerState.Dashing || pState == PlayerState.Dead || pState == PlayerState.Attacking) return;
 
         if (comboCooldownActive && timeSinceAttack >= comboCooldown) {
@@ -206,7 +206,7 @@ public class PlayerController : MonoBehaviour {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
             anim.SetTrigger("Jumping");
             pState = PlayerState.Jumping; // Change state to Jumping
-    }
+            }
         }
     }
 
