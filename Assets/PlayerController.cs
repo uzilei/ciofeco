@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
@@ -91,6 +92,9 @@ public class PlayerController : MonoBehaviour {
             if (yAxis > 0 && Grounded()) {
                 UpAttack();
             }
+            else if (!Grounded()){
+                AirAttack();
+            }
             else {
                 Attack();
             }
@@ -99,6 +103,7 @@ public class PlayerController : MonoBehaviour {
 
     void FixedUpdate() {
         timeSinceAttack += Time.deltaTime;
+        Debug.Log(Grounded());
     if (pState == PlayerState.Dashing || pState == PlayerState.Dead || pState == PlayerState.Attacking) return;
 
         if (comboCooldownActive && timeSinceAttack >= comboCooldown) {
@@ -204,7 +209,6 @@ public class PlayerController : MonoBehaviour {
         pState = PlayerState.Attacking;
         timeSinceAttack = 0f;
         attackCount++;
-        anim.SetBool("Attacking", true);
 
         if (attackCount == 1) {
             anim.SetTrigger("Attack1");
@@ -222,21 +226,29 @@ public class PlayerController : MonoBehaviour {
             Debug.Log("Attack3");
             Hit(FrontAttackTransform, FrontAttackArea, damage + extraComboDamage);
         }
-        if (!Grounded()) { // Stop vertical movement when attacking in the air 
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0);
-            rb.gravityScale = 0;
-        }
+        StartCoroutine(EndAttack());
+    }
+
+    void AirAttack() {
+        if (pState == PlayerState.Attacking) return;
+        pState = PlayerState.Attacking;
+        timeSinceAttack = 0f;
+        comboCooldownActive = true;
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0); // Stop movement
+        anim.SetTrigger("AttackAir");
+        Debug.Log("AttackAir");
+        rb.gravityScale = 0;
+        Hit(FrontAttackTransform, FrontAttackArea, damage + extraComboDamage);
         StartCoroutine(EndAttack());
     }
     void UpAttack() {
         if (pState == PlayerState.Attacking) return;
-        
         pState = PlayerState.Attacking;
         timeSinceAttack = 0f;
         comboCooldownActive = true;
         anim.SetTrigger("AttackUp");
         Debug.Log("AttackUp");
-        Hit(UpAttackTransform, UpAttackArea, damage);
+        Hit(UpAttackTransform, UpAttackArea, damage + extraComboDamage);
         StartCoroutine(EndAttack());
     }
 

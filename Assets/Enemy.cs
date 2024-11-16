@@ -68,7 +68,7 @@ public class Enemy : MonoBehaviour {
         health -= _damageDone;
         float finalHitForce = _hitforce;
 
-        if (player != null && player.attackCount == 3) {
+        if (player.attackCount == 3) {
             finalHitForce *= comboRecoilMultiplier;
         }
 
