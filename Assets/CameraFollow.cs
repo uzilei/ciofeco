@@ -16,7 +16,7 @@ public class CameraFollow : MonoBehaviour {
     // Update every frame
     void FixedUpdate() {
         // Calculate target positon with offset (?)
-        Vector3 targetPosition = PlayerControll.Instance.transform.position + offset;
+        Vector3 targetPosition = PlayerController.Instance.transform.position + offset;
 
         // SmoothDamp
         transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, followSpeed);
