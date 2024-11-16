@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour {
 
     [SerializeField] private float walkspeed = 1;
 
+    
+
     private float xAxis;
     private float yAxis;
     private float gravity;
@@ -16,6 +18,9 @@ public class PlayerController : MonoBehaviour {
     [Header("Health Settings")]
     public int health;
     public int maxHealth;
+    //Life bar management
+    public delegate void OnHealthChangedDelegate();
+    [HideInInspector] public OnHealthChangedDelegate OnHealthChangedCallBack;
     [Space(5)]
     Animator anim;
 
@@ -312,5 +317,14 @@ public class PlayerController : MonoBehaviour {
     #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false; // This line is for testing in the Unity editor
     #endif
+    }
+
+    public int Health { 
+        get { return health; } 
+        set { 
+            health = value; if (OnHealthChangedCallBack != null) { 
+            OnHealthChangedCallBack.Invoke(); // Invoke the delegate when health changes 
+            } 
+        } 
     }
 }
