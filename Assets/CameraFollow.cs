@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraFollow : MonoBehaviour {
-    [SerializeField] private float followSpeed = 0.1f;
+    [SerializeField] private float followSpeed = 0.01f;
     [SerializeField] private Vector3 offset = new Vector3(0f, 5f, -10f); // Offset compared to player
 
     private Vector3 velocity = Vector3.zero; // SmoothDamp variable
