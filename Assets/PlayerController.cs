@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour {
     [Header("Health Settings")]
     public int health;
     public int maxHealth;
+    public int healing;
+    private int healingCooldown;
     //Life bar management
     public delegate void OnHealthChangedDelegate();
     [HideInInspector] public OnHealthChangedDelegate OnHealthChangedCallBack;
@@ -319,12 +321,8 @@ public class PlayerController : MonoBehaviour {
     #endif
     }
 
-    public int Health { 
-        get { return health; } 
-        set { 
-            health = value; if (OnHealthChangedCallBack != null) { 
-            OnHealthChangedCallBack.Invoke(); // Invoke the delegate when health changes 
-            } 
-        } 
-    }
+    // private void Healing(){
+        
+    // }
+
 }
