@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: fa0e99b3049a3704db05c71c7e93abbe
+guid: f1b8a072b99522041a0f1955061308f3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4237854486601445572
-    second: un_simbolo_magico_di_guarigione_in_pixel_art_semplice-removebg-preview_0
+      213: -880559589973423844
+    second: HealthBar (1)_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: un_simbolo_magico_di_guarigione_in_pixel_art_semplice-removebg-preview_0
+      name: HealthBar (1)_0
       rect:
         serializedVersion: 2
-        x: 17
-        y: 8
-        width: 443
-        height: 476
+        x: 83
+        y: 36
+        width: 199
+        height: 27
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4c0bca3d332efca30800000000000000
-      internalID: 4237854486601445572
+      spriteID: c190214e7bf97c3f0800000000000000
+      internalID: -880559589973423844
       vertices: []
       indices: 
       edges: []
@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      HealthBar (1)_0: -880559589973423844
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
