@@ -24,7 +24,7 @@ public class Zombie : Enemy
     protected override void FixedUpdate() {
         base.FixedUpdate();
         if (!isRecoiling) {
-            transform.position = Vector2.MoveTowards(transform.position, new Vector2(PlayerControll.Instance.transform.position.x, transform.position.y), speed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, new Vector2(PlayerController.Instance.transform.position.x, transform.position.y), speed * Time.deltaTime);
         }
     }
     
