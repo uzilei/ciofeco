@@ -1,0 +1,867 @@
+fileFormatVersion: 2
+guid: 0eaf1afdc1dafbe45b0f4270075f1285
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2158312477368195198
+    second: platformbreakable_0
+  - first:
+      213: 1166841302545469746
+    second: platformbreakable_1
+  - first:
+      213: -4953265491239776538
+    second: platformbreakable_2
+  - first:
+      213: -6562344926072839094
+    second: platformbreakable_3
+  - first:
+      213: -6866694987761250145
+    second: platformbreakable_4
+  - first:
+      213: -1555735301267749670
+    second: platformbreakable_5
+  - first:
+      213: 5154326993224840606
+    second: platformbreakable_6
+  - first:
+      213: -2849529890423499580
+    second: platformbreakable_7
+  - first:
+      213: 792020705941271523
+    second: platformbreakable_8
+  - first:
+      213: -6999039503169854213
+    second: platformbreakable_9
+  - first:
+      213: -5308099360262680914
+    second: platformbreakable_10
+  - first:
+      213: -4866639616131306194
+    second: platformbreakable_11
+  - first:
+      213: 7847845197167630853
+    second: platformbreakable_12
+  - first:
+      213: -2878977098405849809
+    second: platformbreakable_13
+  - first:
+      213: 7450477810863831174
+    second: platformbreakable_14
+  - first:
+      213: 8109349662303249325
+    second: platformbreakable_15
+  - first:
+      213: 324504236492528139
+    second: platformbreakable_16
+  - first:
+      213: 335305251699990571
+    second: platformbreakable_17
+  - first:
+      213: -2052286381492436163
+    second: platformbreakable_18
+  - first:
+      213: -2048287185427442501
+    second: platformbreakable_19
+  - first:
+      213: -7898485940322122811
+    second: platformbreakable_20
+  - first:
+      213: -5928476259710954307
+    second: platformbreakable_21
+  - first:
+      213: 7501044105065420663
+    second: platformbreakable_22
+  - first:
+      213: -2941722274780952923
+    second: platformbreakable_23
+  - first:
+      213: 1281863184642520189
+    second: platformbreakable_24
+  - first:
+      213: 5940655436723908610
+    second: platformbreakable_25
+  - first:
+      213: 8948555856367954172
+    second: platformbreakable_26
+  - first:
+      213: 6841392895351847428
+    second: platformbreakable_27
+  - first:
+      213: -6140085185697875157
+    second: platformbreakable_28
+  - first:
+      213: 8975296781423641032
+    second: platformbreakable_29
+  - first:
+      213: -931407754727914996
+    second: platformbreakable_30
+  - first:
+      213: 8169757157480104142
+    second: platformbreakable_31
+  - first:
+      213: 1506264463244579511
+    second: platformbreakable_32
+  - first:
+      213: -4335829041688667669
+    second: platformbreakable_33
+  - first:
+      213: -5016559529860422519
+    second: platformbreakable_34
+  - first:
+      213: -3004103031673770909
+    second: platformbreakable_35
+  - first:
+      213: -4952447267147325440
+    second: platformbreakable_36
+  - first:
+      213: -5770876925916454386
+    second: platformbreakable_37
+  - first:
+      213: -7320392679735592623
+    second: platformbreakable_38
+  - first:
+      213: 3778204858637108610
+    second: platformbreakable_39
+  - first:
+      213: 8419824358783769163
+    second: platformbreakable_40
+  - first:
+      213: 3433488059958265901
+    second: platformbreakable_41
+  - first:
+      213: -516022268250868689
+    second: platformbreakable_42
+  - first:
+      213: 9154250472136165128
+    second: platformbreakable_43
+  - first:
+      213: 2920010134912437029
+    second: platformbreakable_44
+  - first:
+      213: -5960845203251741477
+    second: platformbreakable_45
+  - first:
+      213: -9044407296717449190
+    second: platformbreakable_46
+  - first:
+      213: 3252425907065621601
+    second: platformbreakable_47
+  - first:
+      213: -8152231161952426973
+    second: platformbreakable_48
+  - first:
+      213: 6758206231282094707
+    second: platformbreakable_49
+  - first:
+      213: -4891233759482318522
+    second: platformbreakable_50
+  - first:
+      213: 2387342065526988496
+    second: platformbreakable_51
+  - first:
+      213: -1801921316957540321
+    second: platformbreakable_52
+  - first:
+      213: 1269389516135126415
+    second: platformbreakable_53
+  - first:
+      213: 8133275827555489482
+    second: platformbreakable_54
+  - first:
+      213: -4759552026603270682
+    second: platformbreakable_55
+  - first:
+      213: 1985079958637893887
+    second: platformbreakable_56
+  - first:
+      213: 7289118531764783295
+    second: platformbreakable_57
+  - first:
+      213: 2471535327138938284
+    second: platformbreakable_58
+  - first:
+      213: -21231184509338619
+    second: platformbreakable_59
+  - first:
+      213: -2235388626637602826
+    second: platformbreakable_60
+  - first:
+      213: -8278825636097161337
+    second: platformbreakable_61
+  - first:
+      213: -4173775941021561105
+    second: platformbreakable_62
+  - first:
+      213: 5759415197693524668
+    second: platformbreakable_63
+  - first:
+      213: 9114351273371692703
+    second: platformbreakable_64
+  - first:
+      213: -1044106105004305865
+    second: platformbreakable_65
+  - first:
+      213: 171407584422213857
+    second: platformbreakable_66
+  - first:
+      213: 6378572938194721962
+    second: platformbreakable_67
+  - first:
+      213: 7766029259456222410
+    second: platformbreakable_68
+  - first:
+      213: -1222004811059506922
+    second: platformbreakable_69
+  - first:
+      213: -7095739056891872527
+    second: platformbreakable_70
+  - first:
+      213: -8108774556866917186
+    second: platformbreakable_71
+  - first:
+      213: -4970103018896334943
+    second: platformbreakable_72
+  - first:
+      213: -698506617114774994
+    second: platformbreakable_73
+  - first:
+      213: 6745269069906722330
+    second: platformbreakable_74
+  - first:
+      213: -6522193087766333965
+    second: platformbreakable_75
+  - first:
+      213: -6406087572306191105
+    second: platformbreakable_76
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: platformbreakable_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7813df43cdd3fd10800000000000000
+      internalID: 2158312477368195198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: platformbreakable_1
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2311a738bf3713010800000000000000
+      internalID: 1166841302545469746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: platformbreakable_2
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6eec37c7747724bb0800000000000000
+      internalID: -4953265491239776538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: platformbreakable_3
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4467dbfe0edde4a0800000000000000
+      internalID: -6562344926072839094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: platformbreakable_4
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9019893a4994b0a0800000000000000
+      internalID: -6866694987761250145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: platformbreakable_5
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad486637cfae86ae0800000000000000
+      internalID: -1555735301267749670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: platformbreakable_6
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e95bf5f6719d78740800000000000000
+      internalID: 5154326993224840606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: platformbreakable_7
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c4137089af6478d0800000000000000
+      internalID: -2849529890423499580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: platformbreakable_8
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e33260c2a2ddfa00800000000000000
+      internalID: 792020705941271523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: platformbreakable_9
+      rect:
+        serializedVersion: 2
+        x: 1800
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf462a487aa6ede90800000000000000
+      internalID: -6999039503169854213
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: platformbreakable_10
+      rect:
+        serializedVersion: 2
+        x: 2000
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eae801f51c7d556b0800000000000000
+      internalID: -5308099360262680914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: platformbreakable_11
+      rect:
+        serializedVersion: 2
+        x: 2200
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2d66aebd09367cb0800000000000000
+      internalID: -4866639616131306194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: platformbreakable_12
+      rect:
+        serializedVersion: 2
+        x: 2400
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50a9e6d80a529ec60800000000000000
+      internalID: 7847845197167630853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: platformbreakable_13
+      rect:
+        serializedVersion: 2
+        x: 2600
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f25d80d1591db08d0800000000000000
+      internalID: -2878977098405849809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: platformbreakable_14
+      rect:
+        serializedVersion: 2
+        x: 2800
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 688f77b381a656760800000000000000
+      internalID: 7450477810863831174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: platformbreakable_15
+      rect:
+        serializedVersion: 2
+        x: 3000
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da3e40d7d823a8070800000000000000
+      internalID: 8109349662303249325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: platformbreakable_16
+      rect:
+        serializedVersion: 2
+        x: 3200
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b0a1f3042eed08400800000000000000
+      internalID: 324504236492528139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: platformbreakable_17
+      rect:
+        serializedVersion: 2
+        x: 3400
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b20a6e2995e37a400800000000000000
+      internalID: 335305251699990571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: platformbreakable_18
+      rect:
+        serializedVersion: 2
+        x: 3600
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3385c5d860d483e0800000000000000
+      internalID: -2052286381492436163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: platformbreakable_19
+      rect:
+        serializedVersion: 2
+        x: 3800
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb4dc9a38a50393e0800000000000000
+      internalID: -2048287185427442501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: platformbreakable_20
+      rect:
+        serializedVersion: 2
+        x: 4000
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c3ceaf92e0f26290800000000000000
+      internalID: -7898485940322122811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: platformbreakable_21
+      rect:
+        serializedVersion: 2
+        x: 4200
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db497909042d9bda0800000000000000
+      internalID: -5928476259710954307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 94e0c1f309ba05844b5ae97a050ed05c
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      platformbreakable_0: 2158312477368195198
+      platformbreakable_1: 1166841302545469746
+      platformbreakable_10: -5308099360262680914
+      platformbreakable_11: -4866639616131306194
+      platformbreakable_12: 7847845197167630853
+      platformbreakable_13: -2878977098405849809
+      platformbreakable_14: 7450477810863831174
+      platformbreakable_15: 8109349662303249325
+      platformbreakable_16: 324504236492528139
+      platformbreakable_17: 335305251699990571
+      platformbreakable_18: -2052286381492436163
+      platformbreakable_19: -2048287185427442501
+      platformbreakable_2: -4953265491239776538
+      platformbreakable_20: -7898485940322122811
+      platformbreakable_21: -5928476259710954307
+      platformbreakable_3: -6562344926072839094
+      platformbreakable_4: -6866694987761250145
+      platformbreakable_5: -1555735301267749670
+      platformbreakable_6: 5154326993224840606
+      platformbreakable_7: -2849529890423499580
+      platformbreakable_8: 792020705941271523
+      platformbreakable_9: -6999039503169854213
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
