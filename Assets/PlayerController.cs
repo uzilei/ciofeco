@@ -338,7 +338,6 @@ public class PlayerController : MonoBehaviour {
         if (pState == PlayerState.Dead) return;
         if (timeSinceHeal <= healingCooldown) {
             Debug.Log("Time since last heal too short!");
-            Debug.Log(timeSinceHeal);
             return;
         } else {
             timeSinceHeal = 0f;
