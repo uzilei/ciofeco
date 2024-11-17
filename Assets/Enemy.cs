@@ -3,26 +3,28 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour {
     [Header("Enemy Attributes")]
-    [SerializeField] protected float health = 10f;
-    [SerializeField] protected float recoilLength = 0.5f;
-    [SerializeField] protected float recoilFactor = 10f;
-    [SerializeField] protected float comboRecoilMultiplier = 2f;
-    [SerializeField] protected float speed = 2f;
+    [SerializeField] float health;
+    [SerializeField] float recoilLength;
+    [SerializeField] float recoilFactor;
+    [SerializeField] float comboRecoilMultiplier;
+    [SerializeField] float speed;
+    [SerializeField] float attackTime;
 
     [Header("Attack Settings")]
-    [SerializeField] protected Transform enemyAttackTransform;
-    [SerializeField] protected Vector2 enemyAttackArea = new Vector2(1, 1);
+    [SerializeField] Transform enemyAttackTransform;
+    [SerializeField] Vector2 enemyAttackArea = new Vector2(1, 1);
 
     [Header("References")]
-    [SerializeField] protected PlayerController player;
+    [SerializeField] PlayerController player;
 
-    protected bool isRecoiling = false;
-    protected bool isDead = false;
-    protected float recoilTimer;
-    protected Rigidbody2D rb;
-    protected Animator anim;
+    bool isRecoiling = false;
+    bool isAttacking = false;
+    bool isDead = false;
+    float recoilTimer;
+    Rigidbody2D rb;
+    Animator anim;
 
-    protected virtual void Awake() {
+    void Awake() {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
 
@@ -37,16 +39,15 @@ public class Enemy : MonoBehaviour {
             yield return null; // Wait for PlayerController to be instantiated
         }
         player = PlayerController.Instance;
-        Debug.Log("Player assigned successfully.");
     }
 
 
-    protected virtual void Start() {
-        rb.gravityScale = 4f; // Default gravity scale for grounded enemies
+    void Start() {
+        rb.gravityScale = 4f;
     }
 
-    protected virtual void FixedUpdate() {
-        if (isDead) return;
+    void FixedUpdate() {
+        if (isDead || isAttacking) return;
 
         if (isRecoiling) {
             HandleRecoil();
@@ -58,7 +59,7 @@ public class Enemy : MonoBehaviour {
         Flip();
     }
 
-    protected virtual void HandleRecoil() {
+    void HandleRecoil() {
         if (recoilTimer < recoilLength) {
             recoilTimer += Time.deltaTime;
         } else {
@@ -68,9 +69,9 @@ public class Enemy : MonoBehaviour {
         }
     }
 
-    protected virtual void FollowPlayer() {
+    void FollowPlayer() {
         if (player == null) {
-            return; // Exit the method if player is not set
+            return;
         }
 
         if (!isRecoiling) {
@@ -83,7 +84,7 @@ public class Enemy : MonoBehaviour {
     }
 
 
-    protected virtual void Flip() {
+    void Flip() {
         if (player.transform.position.x < transform.position.x) {
             transform.localScale = new Vector2(-Mathf.Abs(transform.localScale.x), transform.localScale.y);
         } else if (player.transform.position.x > transform.position.x) {
@@ -91,7 +92,7 @@ public class Enemy : MonoBehaviour {
         }
     }
 
-    protected void PlayerHit() {
+    void PlayerHit() {
         if (enemyAttackTransform == null || enemyAttackArea == null) return;
 
         Collider2D hit = Physics2D.OverlapBox(
@@ -105,12 +106,21 @@ public class Enemy : MonoBehaviour {
             Vector2 hitDirection = (hit.transform.position - transform.position).normalized;
             PlayerController player = hit.GetComponent<PlayerController>();
             if (player != null) {
-                player.TakeDamage(1, hitDirection);
+                player.TakeDamageEnemy(1, hitDirection);
+                anim.SetTrigger("Attacked");
+                isAttacking = true;
+                StartCoroutine(EndAttack());
             }
         }
     }
 
-    public virtual void EnemyHit(float _damageDone, Vector2 _hitDirection, float _hitforce) {
+    IEnumerator EndAttack() {
+        yield return new WaitForSeconds(attackTime);
+        Debug.Log("Called EndAttack");
+        isAttacking = false;
+    }
+
+    public void EnemyHit(float _damageDone, Vector2 _hitDirection, float _hitforce) {
         if (isDead) return;
         health -= _damageDone;
         float finalHitForce = _hitforce;
@@ -132,11 +142,11 @@ public class Enemy : MonoBehaviour {
         rb.linearVelocity = Vector2.zero; // Stop movement
     }
 
-    protected virtual void EnemyDeath() {
+    void EnemyDeath() {
         Destroy(gameObject);
     }
 
-    protected virtual void OnDrawGizmos() {
+    void OnDrawGizmos() {
         if (enemyAttackTransform != null) {
             Gizmos.color = Color.red;
             Gizmos.DrawWireCube(enemyAttackTransform.position, enemyAttackArea);
