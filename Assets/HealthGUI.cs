@@ -6,27 +6,22 @@ public class HealthGUI : MonoBehaviour
     private Slider slide;
     private PlayerController player;
 
-    void Start()
-    {
+    void Start() {
         slide = GetComponent<Slider>();
-        if (slide == null)
-        {
+        if (slide == null) {
             return;
         }
 
         player = PlayerController.Instance;
-        if (player == null)
-        {
+        if (player == null) {
             return;
         }
 
         slide.maxValue = player.maxHealth;
     }
 
-    void Update()
-    {
-        if (player != null)
-        {
+    void Update() {
+        if (player != null) {
             slide.value = player.health;
         }
     }

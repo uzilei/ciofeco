@@ -16,6 +16,9 @@ public class CameraFollow : MonoBehaviour {
         // Calculate target positon with offset (?)
         Vector3 targetPosition = PlayerController.Instance.transform.position + offset;
 
+        // Lock vertical position
+        targetPosition.y = transform.position.y;
+
         // SmoothDamp
         transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, followSpeed);
     }
