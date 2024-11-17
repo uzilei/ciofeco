@@ -65,6 +65,8 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private float knockbackForce;
     [SerializeField] private float knockbackDuration;
     [SerializeField] private float iFrameDuration;
+    private float iFrameTimerAbsolute = 0f;
+    private float iFrameDurationAbsolute = 0.2f;
     private float iFrameTimer = 0f;
     private float knockbackTimer = 0f;
 
@@ -126,6 +128,10 @@ public class PlayerController : MonoBehaviour {
             iFrameTimer -= Time.deltaTime;
         }
 
+        if (iFrameTimerAbsolute > 0) {
+            iFrameTimerAbsolute -= Time.deltaTime;
+        }
+
         if (knockbackTimer > 0) {
             knockbackTimer -= Time.deltaTime;
             if (knockbackTimer <= 0) {
@@ -149,6 +155,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     void Flip() {
+        if (pState == PlayerState.Dead) return;
         if (xAxis < 0)
         {
             transform.localScale = new Vector2(-Mathf.Abs(transform.localScale.x), transform.localScale.y);
@@ -159,7 +166,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void Move() {
-        if (pState != PlayerState.Attacking) {
+        if (pState != PlayerState.Attacking && pState != PlayerState.Dead) {
             if (xAxis != 0) {
                 pState = PlayerState.Moving;
                 rb.linearVelocity = new Vector2(walkspeed * xAxis, rb.linearVelocity.y);
@@ -199,7 +206,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     void Jump() {
-        if (pState != PlayerState.Attacking) {
+        if (pState != PlayerState.Attacking && pState != PlayerState.Dead) {
             if (Grounded() && pState != PlayerState.Attacking) {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
             anim.SetTrigger("Jumping");
@@ -275,6 +282,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void TakeDamageEnemy(int damage, Vector2 hitDirection) {
+        if (pState == PlayerState.Dead) return;
         if (iFrameTimer > 0f) {
             return;
         }
@@ -285,16 +293,18 @@ public class PlayerController : MonoBehaviour {
         }
 
         health -= damage;
-        iFrameTimer = iFrameDuration;
-
-        if (health <= 0) {
+        if (health <= 0 && pState != PlayerState.Dead) {
             health = 0;
             pState = PlayerState.Dead;
+            rb.linearVelocity = Vector2.zero;
             anim.SetTrigger("Dead");
-        } else {
-            ApplyKnockback(hitDirection);
-            Debug.Log($"Player took {damage} damage, Current health: {health}");
+            anim.SetBool("Moving", false);
+            anim.SetBool("Falling", false);
+            return;
         }
+        iFrameTimer = iFrameDuration;
+        ApplyKnockback(hitDirection);
+        Debug.Log($"Player took {damage} damage, Current health: {health}");
     }
 
     public void ApplyKnockback(Vector2 direction) {
@@ -305,19 +315,27 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void TakeDamageAbsolute(int damage, Vector2 hitDirection) {
+        if (pState == PlayerState.Dead) return;
+        if (iFrameTimerAbsolute > 0f) {
+            return;
+        }
         health -= damage;
-
-        if (health <= 0) {
+        if (health <= 0 && pState != PlayerState.Dead) {
             health = 0;
             pState = PlayerState.Dead;
+            rb.linearVelocity = Vector2.zero;
             anim.SetTrigger("Dead");
-        } else {
-            ApplyKnockback(hitDirection);
-            Debug.Log($"Player took {damage} absolute damage, Current health: {health}");
+            anim.SetBool("Moving", false);
+            anim.SetBool("Falling", false);
+            return;
         }
+        iFrameTimerAbsolute = iFrameDurationAbsolute;
+        ApplyKnockback(hitDirection);
+        Debug.Log($"Player took {damage} absolute damage, Current health: {health}");
     }
 
     private void Heal() {
+        if (pState == PlayerState.Dead) return;
         if (timeSinceHeal <= healingCooldown) {
             Debug.Log("Time since last heal too short!");
             Debug.Log(timeSinceHeal);
@@ -338,7 +356,7 @@ public class PlayerController : MonoBehaviour {
         // Called by animation
         pState = PlayerState.Idle;
     }
-    
+
     public void ExitGame() {
         Application.Quit();
     #if UNITY_EDITOR

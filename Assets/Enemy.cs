@@ -46,7 +46,7 @@ public class Enemy : MonoBehaviour {
         rb.gravityScale = 4f;
     }
 
-     void FixedUpdate() {
+    void FixedUpdate() {
         if (isDead || isAttacking) return;
 
         if (isRecoiling) {
