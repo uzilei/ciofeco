@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Trap : MonoBehaviour {
     [Header("Trap Settings")]
+    [SerializeField] int trapDamage;
     [SerializeField] Vector2 trapArea = new Vector2(2, 2);
     [SerializeField] Transform trapCenter;
     [SerializeField] LayerMask playerLayer;
@@ -12,7 +13,7 @@ public class Trap : MonoBehaviour {
             PlayerController player = hit.GetComponent<PlayerController>();
             if (player != null) {
                 Vector2 hitDirection = (hit.transform.position - transform.position).normalized;
-                player.TakeDamageAbsolute(1, hitDirection);
+                player.TakeDamageAbsolute(trapDamage, hitDirection);
             }
         }
     }

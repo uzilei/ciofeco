@@ -1,25 +1,43 @@
 using UnityEngine;
 
 public class CameraFollow : MonoBehaviour {
-    [SerializeField] private float followSpeed = 0.01f;
-    [SerializeField] private Vector3 offset = new Vector3(0f, 5f, -10f); // Offset compared to player
+    private float followSpeed = 0.2f; // Speed of camera smoothing
+    private Vector3 baseOffset = new Vector3(1f, 2f, -7f); // Default offset
+    private float aspectRatioMultiplier = 1.0f; // Multiplier for dynamic aspect ratio adjustment
 
-    private Vector3 velocity = Vector3.zero; // SmoothDamp variable
+    private Vector3 velocity = Vector3.zero; // Used for SmoothDamp
 
-    // Initial Function
+    private float fixedYPosition; // Store the fixed Y position for the camera
+
+    // Adjusts the camera offset dynamically based on the current screen resolution and aspect ratio.
     void Start() {
-        Camera.main.fieldOfView = 60f; // FOV, Modify on case-by-case basis
+        DontDestroyOnLoad(gameObject);
+
+        float targetAspect = 16f / 9f; // Desired standard aspect ratio
+        float currentAspect = (float)Screen.width / Screen.height;
+
+        // Scale the offset dynamically based on the aspect ratio
+        float scaleMultiplier = currentAspect / targetAspect * aspectRatioMultiplier;
+
+        baseOffset = new Vector3(baseOffset.x, baseOffset.y * scaleMultiplier, baseOffset.z);
+
+        // Store the initial Y position to lock it in place
+        fixedYPosition = transform.position.y;
     }
 
-    // Update every frame
     void FixedUpdate() {
-        // Calculate target positon with offset (?)
-        Vector3 targetPosition = PlayerController.Instance.transform.position + offset;
+        if (PlayerController.Instance == null) {
+            Debug.LogWarning("PlayerController instance not found!");
+            return;
+        }
 
-        // Lock vertical position
-        targetPosition.y = transform.position.y;
+        // Calculate target position with dynamic offset
+        Vector3 targetPosition = PlayerController.Instance.transform.position + baseOffset;
 
-        // SmoothDamp
+        // Lock the vertical (Y) position of the camera
+        targetPosition.y = fixedYPosition;
+
+        // Smoothly move the camera to the target position
         transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, followSpeed);
     }
 }

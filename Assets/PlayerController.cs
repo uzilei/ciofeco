@@ -42,8 +42,8 @@ public class PlayerController : MonoBehaviour {
     [Header("Ground Check Settings")]
     [SerializeField] private float jumpForce;
     [SerializeField] private Transform groundCheckPoint;
-    [SerializeField] private float groundCheckY = 0.2f;
-    [SerializeField] private float groundCheckX = 0.5f;
+    [SerializeField] private float groundCheckY = 0.1f;
+    [SerializeField] private float groundCheckX = 0.1f;
     [SerializeField] private LayerMask groundLayer;
 
     [Header("Dash Settings")]
@@ -188,12 +188,12 @@ public class PlayerController : MonoBehaviour {
         anim.SetTrigger("Dashing");
         rb.gravityScale = 0;
         rb.linearVelocity = new Vector2(transform.localScale.x * dashSpeed, 0);
-        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("attackable"), true);
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Attackable"), true);
 
         yield return new WaitForSeconds(dashTime);
         rb.gravityScale = gravity;
         pState = PlayerState.Idle;
-        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("attackable"), false);
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Attackable"), false);
 
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
@@ -242,7 +242,7 @@ public class PlayerController : MonoBehaviour {
         pState = PlayerState.Attacking;
         timeSinceAttack = 0f;
         comboCooldownActive = true;
-        rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0);
+        rb.linearVelocity = new Vector2(0, 0);
         anim.SetTrigger("AttackAir");
         rb.gravityScale = 0;
         Hit(FrontAttackTransform, FrontAttackArea, damage + extraComboDamage);
@@ -259,7 +259,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     IEnumerator EndAttack() {
-        yield return new WaitForSeconds(0.66f); // Cooldown between non-combo attacks
+        yield return new WaitForSeconds(0.5f); // Cooldown between non-combo attacks
         pState = PlayerState.Idle;
         rb.gravityScale = gravity;
     }
@@ -336,6 +336,10 @@ public class PlayerController : MonoBehaviour {
 
     private void Heal() {
         if (pState == PlayerState.Dead) return;
+        if (heals <= 0) {
+            Debug.Log("Player out of heals");
+            return;
+        }
         if (timeSinceHeal <= healingCooldown) {
             Debug.Log("Time since last heal too short!");
             return;
@@ -346,6 +350,7 @@ public class PlayerController : MonoBehaviour {
                 health = maxHealth;
             }
             Debug.Log($"Player healed, Current health: {health}");
+            heals--;
             pState = PlayerState.Healing;
             anim.SetTrigger("Healing");
         }
