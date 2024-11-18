@@ -326,7 +326,7 @@ MonoBehaviour:
     m_Bits: 8
   slopeLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   dashSpeed: 10
   dashTime: 0.2
   dashCooldown: 2

@@ -29,9 +29,9 @@ public class BreakablePlatform : MonoBehaviour {
     }
 
     private IEnumerator ColliderToggle() {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         platformCollider.enabled = false;
-        yield return new WaitForSeconds(12.5f);
+        yield return new WaitForSeconds(13.5f);
         platformCollider.enabled = true;
         anim.SetBool("Breaking", false);
     }
