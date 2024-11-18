@@ -1,6 +1,7 @@
 using UnityEngine;
 
-public class CameraFollow : MonoBehaviour {
+public class CameraScript : MonoBehaviour
+{
     private float followSpeed = 0.05f;
     [SerializeField] private Vector3 baseOffset = new Vector3(1f, 2f, -7f);
     private float aspectRatioMultiplier = 1.0f;
@@ -16,17 +17,17 @@ public class CameraFollow : MonoBehaviour {
 
     // Shake parameters
     [Header("Camera Shake")]
-    private float shakeAmount = 0.4f; // The amount the camera will shake
-    private float shakeDuration = 0.06f; // How long the shake will last
-    private float shakeInterval = 0.03f; // Interval between each shake (in seconds)
+    private float shakeInterval = 0.025f; // Interval between each shake (in seconds)
 
     private float shakeTimer = 0f;
     private Vector3 originalPosition; // To store the original camera position
     private float timeSinceLastShake = 0f; // Track time since last shake trigger
 
-    void Start() {
-        DontDestroyOnLoad(gameObject);
+    private float currentShakeAmount; // To store current shake amount
+    private float currentShakeDuration; // To store current shake duration
 
+    void Start()
+    {
         float targetAspect = 16f / 9f;
         float currentAspect = (float)Screen.width / Screen.height;
 
@@ -36,7 +37,8 @@ public class CameraFollow : MonoBehaviour {
         baseOffset = new Vector3(baseOffset.x, baseOffset.y * scaleMultiplier, baseOffset.z);
     }
 
-    void FixedUpdate() {
+    void FixedUpdate()
+    {
         // Calculate target position with dynamic offset
         Vector3 targetPosition = PlayerController.Instance.transform.position + baseOffset;
 
@@ -45,8 +47,9 @@ public class CameraFollow : MonoBehaviour {
         targetPosition.y = Mathf.Clamp(targetPosition.y, minY, maxY); // Clamp Y position
 
         // If shaking, apply the shake offset to the target position
-        if (shakeTimer > 0) {
-            targetPosition += new Vector3(Random.Range(-shakeAmount, shakeAmount), Random.Range(-shakeAmount, shakeAmount), 0);
+        if (shakeTimer > 0)
+        {
+            targetPosition += new Vector3(Random.Range(-currentShakeAmount, currentShakeAmount), Random.Range(-currentShakeAmount, currentShakeAmount), 0);
             shakeTimer -= Time.deltaTime;
         }
 
@@ -54,7 +57,8 @@ public class CameraFollow : MonoBehaviour {
         transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, followSpeed);
 
         // Store the original position for shake calculation
-        if (shakeTimer <= 0 && transform.position != originalPosition) {
+        if (shakeTimer <= 0 && transform.position != originalPosition)
+        {
             originalPosition = transform.position;
         }
 
@@ -62,10 +66,16 @@ public class CameraFollow : MonoBehaviour {
         timeSinceLastShake += Time.deltaTime;
     }
 
-    // Function to trigger camera shake
-    public void Shake() {
-        if (timeSinceLastShake >= shakeInterval) {
-            shakeTimer = shakeDuration; // Set shake duration
+    // Function to trigger camera shake with shakeAmount and shakeDuration as parameters
+    public void Shake(float shakeAmount, float shakeDuration)
+    {
+        // Store the passed shakeAmount and shakeDuration in the respective variables
+        currentShakeAmount = shakeAmount;
+        currentShakeDuration = shakeDuration;
+
+        if (timeSinceLastShake >= shakeInterval)
+        {
+            shakeTimer = currentShakeDuration; // Set shake duration
             timeSinceLastShake = 0f; // Reset the timer for the next shake interval
         }
     }

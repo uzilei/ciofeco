@@ -323,12 +323,12 @@ public class PlayerController : MonoBehaviour {
 
     void Hit(Transform _AttackTransform, Vector2 _AttackArea, int damageTotal) {
         Collider2D[] objectsToHit = Physics2D.OverlapBoxAll(_AttackTransform.position, _AttackArea, 0, attackableLayer);
+        CameraScript cam = Camera.main.GetComponent<CameraScript>();
 
         for (int i = 0; i < objectsToHit.Length; i++) {
             if (objectsToHit[i].GetComponent<Enemy>() != null)
             {
-                CameraFollow cam = Camera.main.GetComponent<CameraFollow>();
-                cam.Shake();
+                cam.Shake(0.4f, 0.1f);
                 objectsToHit[i].GetComponent<Enemy>().EnemyHit(damageTotal, (transform.position - objectsToHit[i].transform.position).normalized, 100);
             }
         }
@@ -357,8 +357,8 @@ public class PlayerController : MonoBehaviour {
         }
         iFrameTimer = iFrameDuration;
         ApplyKnockback(hitDirection);
-        CameraFollow cam = Camera.main.GetComponent<CameraFollow>();
-        cam.Shake();
+        CameraScript cam = Camera.main.GetComponent<CameraScript>();
+        cam.Shake(0.4f, 0.1f);
         Debug.Log($"Player took {damage} damage, Current health: {health}");
     }
 
@@ -386,8 +386,8 @@ public class PlayerController : MonoBehaviour {
         }
         iFrameTimerAbsolute = iFrameDurationAbsolute;
         ApplyKnockback(hitDirection);
-        CameraFollow cam = Camera.main.GetComponent<CameraFollow>();
-        cam.Shake();
+        CameraScript cam = Camera.main.GetComponent<CameraScript>();
+        cam.Shake(0.4f, 0.1f);
         Debug.Log($"Player took {damage} absolute damage, Current health: {health}");
     }
 
