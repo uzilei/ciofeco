@@ -16,7 +16,7 @@ public class CameraFollow : MonoBehaviour {
 
     // Shake parameters
     [Header("Camera Shake")]
-    private float shakeAmount = 0.5f; // The amount the camera will shake
+    private float shakeAmount = 0.4f; // The amount the camera will shake
     private float shakeDuration = 0.06f; // How long the shake will last
     private float shakeInterval = 0.03f; // Interval between each shake (in seconds)
 
