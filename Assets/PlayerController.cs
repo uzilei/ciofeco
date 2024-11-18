@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour {
     [Header("Horizontal Movement Setting")]
@@ -24,6 +25,7 @@ public class PlayerController : MonoBehaviour {
     [Space(5)]
 
     Animator anim;
+    HealCounter healCount;
     private bool canDash = true;
     public static PlayerController Instance;
     public int attackCount = 0;
@@ -39,12 +41,21 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
+    [Header("Wall Check Settings")]
+    [SerializeField] private Transform leftWallCheck, rightWallCheck;
+    [SerializeField] private Vector2 wallCheckSize = new Vector2(0.2f, 0.2f);
+    [SerializeField] private LayerMask wallLayer;
+
     [Header("Ground Check Settings")]
     [SerializeField] private float jumpForce;
     [SerializeField] private Transform groundCheckPoint;
-    [SerializeField] private float groundCheckY = 0.2f;
-    [SerializeField] private float groundCheckX = 0.5f;
+    [SerializeField] private float groundCheckY = 0.1f;
+    [SerializeField] private float groundCheckX = 0.1f;
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private LayerMask slopeLayer;
+
+    private bool isAgainstLeftWall = false;
+    private bool isAgainstRightWall = false;
 
     [Header("Dash Settings")]
     [SerializeField] private float dashSpeed;
@@ -77,9 +88,21 @@ public class PlayerController : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         gravity = rb.gravityScale;
+        if (healCount == null) {
+            healCount = FindFirstObjectByType<HealCounter>();
+        }
     }
 
     void OnDrawGizmos() {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireCube(leftWallCheck.position, wallCheckSize);
+        
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireCube(rightWallCheck.position, wallCheckSize);
+        
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(groundCheckPoint.position, groundCheckY);
+
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(FrontAttackTransform.position, FrontAttackArea);
         Gizmos.DrawWireCube(UpAttackTransform.position, UpAttackArea);
@@ -116,7 +139,7 @@ public class PlayerController : MonoBehaviour {
     void FixedUpdate() {
         timeSinceAttack += Time.deltaTime;
         timeSinceHeal += Time.deltaTime;
-    if (pState == PlayerState.Dashing || pState == PlayerState.Dead || pState == PlayerState.Attacking || pState == PlayerState.Healing) return;
+        if (pState == PlayerState.Dashing || pState == PlayerState.Dead || pState == PlayerState.Attacking || pState == PlayerState.Healing) return;
 
         if (comboCooldownActive && timeSinceAttack >= comboCooldown) {
             ResetCombo();
@@ -148,6 +171,7 @@ public class PlayerController : MonoBehaviour {
             anim.SetBool("Falling", false);
         }
         
+        CheckWallCollision();
         Move();
         if (pState != PlayerState.Attacking) {
             Flip(); 
@@ -182,27 +206,54 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
+    private void CheckWallCollision() {
+        // Check if the player's scale on the x-axis is negative (flipped)
+        bool isFlipped = transform.localScale.x < 0;
+
+        // If the player is flipped, invert the x-axis input
+        if (isFlipped) {
+            xAxis = -xAxis;
+        }
+
+        isAgainstLeftWall = Physics2D.OverlapBox(leftWallCheck.position, wallCheckSize, 0f, wallLayer);
+        isAgainstRightWall = Physics2D.OverlapBox(rightWallCheck.position, wallCheckSize, 0f, wallLayer);
+
+        // Prevent movement if the player is against the wall
+        if (isAgainstLeftWall && xAxis < 0) {
+            xAxis = 0;
+        } else if (isAgainstRightWall && xAxis > 0) {
+            xAxis = 0;
+        }
+
+        // If the player is flipped back, invert the x-axis input again
+        if (isFlipped) {
+            xAxis = -xAxis;
+        }
+    }
+
     IEnumerator Dash() {
         canDash = false;
         pState = PlayerState.Dashing;
         anim.SetTrigger("Dashing");
         rb.gravityScale = 0;
         rb.linearVelocity = new Vector2(transform.localScale.x * dashSpeed, 0);
-        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("attackable"), true);
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Attackable"), true);
 
         yield return new WaitForSeconds(dashTime);
         rb.gravityScale = gravity;
         pState = PlayerState.Idle;
-        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("attackable"), false);
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Attackable"), false);
 
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
     }
 
     public bool Grounded() {
-        return Physics2D.Raycast(groundCheckPoint.position, Vector2.down, groundCheckY, groundLayer)
-            || Physics2D.Raycast(groundCheckPoint.position + new Vector3(groundCheckX, 0, 0), Vector2.down, groundCheckY, groundLayer)
-            || Physics2D.Raycast(groundCheckPoint.position + new Vector3(-groundCheckX, 0, 0), Vector2.down, groundCheckY, groundLayer);
+        int combinedLayer = groundLayer | slopeLayer;
+
+        return Physics2D.Raycast(groundCheckPoint.position, Vector2.down, groundCheckY, combinedLayer)
+            || Physics2D.Raycast(groundCheckPoint.position + new Vector3(groundCheckX, 0, 0), Vector2.down, groundCheckY, combinedLayer)
+            || Physics2D.Raycast(groundCheckPoint.position + new Vector3(-groundCheckX, 0, 0), Vector2.down, groundCheckY, combinedLayer);
     }
 
     void Jump() {
@@ -242,7 +293,7 @@ public class PlayerController : MonoBehaviour {
         pState = PlayerState.Attacking;
         timeSinceAttack = 0f;
         comboCooldownActive = true;
-        rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0);
+        rb.linearVelocity = new Vector2(0, 0);
         anim.SetTrigger("AttackAir");
         rb.gravityScale = 0;
         Hit(FrontAttackTransform, FrontAttackArea, damage + extraComboDamage);
@@ -259,7 +310,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     IEnumerator EndAttack() {
-        yield return new WaitForSeconds(0.66f); // Cooldown between non-combo attacks
+        yield return new WaitForSeconds(0.5f); // Cooldown between non-combo attacks
         pState = PlayerState.Idle;
         rb.gravityScale = gravity;
     }
@@ -276,6 +327,8 @@ public class PlayerController : MonoBehaviour {
         for (int i = 0; i < objectsToHit.Length; i++) {
             if (objectsToHit[i].GetComponent<Enemy>() != null)
             {
+                CameraFollow cam = Camera.main.GetComponent<CameraFollow>();
+                cam.Shake();
                 objectsToHit[i].GetComponent<Enemy>().EnemyHit(damageTotal, (transform.position - objectsToHit[i].transform.position).normalized, 100);
             }
         }
@@ -304,6 +357,8 @@ public class PlayerController : MonoBehaviour {
         }
         iFrameTimer = iFrameDuration;
         ApplyKnockback(hitDirection);
+        CameraFollow cam = Camera.main.GetComponent<CameraFollow>();
+        cam.Shake();
         Debug.Log($"Player took {damage} damage, Current health: {health}");
     }
 
@@ -331,11 +386,17 @@ public class PlayerController : MonoBehaviour {
         }
         iFrameTimerAbsolute = iFrameDurationAbsolute;
         ApplyKnockback(hitDirection);
+        CameraFollow cam = Camera.main.GetComponent<CameraFollow>();
+        cam.Shake();
         Debug.Log($"Player took {damage} absolute damage, Current health: {health}");
     }
 
     private void Heal() {
         if (pState == PlayerState.Dead) return;
+        if (heals <= 0) {
+            Debug.Log("Player out of heals");
+            return;
+        }
         if (timeSinceHeal <= healingCooldown) {
             Debug.Log("Time since last heal too short!");
             return;
@@ -346,6 +407,9 @@ public class PlayerController : MonoBehaviour {
                 health = maxHealth;
             }
             Debug.Log($"Player healed, Current health: {health}");
+            heals--;
+            string healsString = heals.ToString();
+            healCount.UpdateText(healsString);
             pState = PlayerState.Healing;
             anim.SetTrigger("Healing");
         }
@@ -354,6 +418,17 @@ public class PlayerController : MonoBehaviour {
     private void endHeal() {
         // Called by animation
         pState = PlayerState.Idle;
+    }
+
+    public void Transport(string sceneName) {
+        SceneManager.LoadScene(sceneName);
+        StartCoroutine(SetPositionAfterSceneLoad(sceneName));
+    }
+
+    private IEnumerator SetPositionAfterSceneLoad(string sceneName) {
+        while (SceneManager.GetActiveScene().name != sceneName) {
+            yield return null;
+        }
     }
 
     public void ExitGame() {

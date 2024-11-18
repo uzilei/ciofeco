@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 3df493ce985802e47a71633a4d926cdd
+guid: 4284b27231beec24c90a983102e807ef
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7537453726548491019
-    second: Barra-vita-vuota (1)_0
+      213: 6873183457654762329
+    second: breakable_platform_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -72,10 +72,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 64
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Barra-vita-vuota (1)_0
+      name: breakable_platform_0
       rect:
         serializedVersion: 2
-        x: 36
+        x: 0
         y: 0
-        width: 87
-        height: 98
+        width: 64
+        height: 21
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5f4022655c5956790800000000000000
-      internalID: -7537453726548491019
+      spriteID: 95b6a9560f3726f50800000000000000
+      internalID: 6873183457654762329
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Barra-vita-vuota (1)_0: -7537453726548491019
+      breakable_platform_0: 6873183457654762329
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
