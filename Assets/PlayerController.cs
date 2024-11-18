@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour {
     [Space(5)]
 
     Animator anim;
+    HealCounter healCount;
     private bool canDash = true;
     public static PlayerController Instance;
     public int attackCount = 0;
@@ -87,6 +88,9 @@ public class PlayerController : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         gravity = rb.gravityScale;
+        if (healCount == null) {
+            healCount = FindFirstObjectByType<HealCounter>();
+        }
     }
 
     void OnDrawGizmos() {
@@ -404,6 +408,8 @@ public class PlayerController : MonoBehaviour {
             }
             Debug.Log($"Player healed, Current health: {health}");
             heals--;
+            string healsString = heals.ToString();
+            healCount.UpdateText(healsString);
             pState = PlayerState.Healing;
             anim.SetTrigger("Healing");
         }
