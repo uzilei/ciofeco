@@ -1,0 +1,520 @@
+fileFormatVersion: 2
+guid: 85bcdad3cf59f4d488a49e181eb22111
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4377480294095875084
+    second: pontefice_gyattis_0
+  - first:
+      213: 8135826895075477849
+    second: pontefice_gyattis_1
+  - first:
+      213: 2612189109707531011
+    second: pontefice_gyattis_2
+  - first:
+      213: -8731763894971280594
+    second: pontefice_gyattis_3
+  - first:
+      213: 2827893201203199576
+    second: pontefice_gyattis_4
+  - first:
+      213: -6452487445882937465
+    second: pontefice_gyattis_5
+  - first:
+      213: -2855890818472775125
+    second: pontefice_gyattis_6
+  - first:
+      213: 3705374226192358526
+    second: pontefice_gyattis_7
+  - first:
+      213: -2830147718558244470
+    second: pontefice_gyattis_8
+  - first:
+      213: -7707824129080282803
+    second: pontefice_gyattis_9
+  - first:
+      213: 2561486091680567898
+    second: pontefice_gyattis_10
+  - first:
+      213: 538279479610650122
+    second: pontefice_gyattis_11
+  - first:
+      213: -1469516441250757406
+    second: pontefice_gyattis_12
+  - first:
+      213: 1102172638214441118
+    second: pontefice_gyattis_13
+  - first:
+      213: -7176725067498343427
+    second: pontefice_gyattis_14
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 16384
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: pontefice_gyattis_0
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 0
+        width: 425
+        height: 533
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f3942b8dd01043c0800000000000000
+      internalID: -4377480294095875084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pontefice_gyattis_1
+      rect:
+        serializedVersion: 2
+        x: 1068
+        y: 0
+        width: 425
+        height: 533
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9590b03a47348e070800000000000000
+      internalID: 8135826895075477849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pontefice_gyattis_2
+      rect:
+        serializedVersion: 2
+        x: 1938
+        y: 0
+        width: 425
+        height: 533
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 303e242c72c504420800000000000000
+      internalID: 2612189109707531011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pontefice_gyattis_3
+      rect:
+        serializedVersion: 2
+        x: 2808
+        y: 0
+        width: 425
+        height: 533
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e23d7a9100b82d680800000000000000
+      internalID: -8731763894971280594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pontefice_gyattis_4
+      rect:
+        serializedVersion: 2
+        x: 3678
+        y: 0
+        width: 425
+        height: 533
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 85e757832e1be3720800000000000000
+      internalID: 2827893201203199576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pontefice_gyattis_5
+      rect:
+        serializedVersion: 2
+        x: 4548
+        y: 0
+        width: 425
+        height: 533
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 78fda7ecad82476a0800000000000000
+      internalID: -6452487445882937465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pontefice_gyattis_6
+      rect:
+        serializedVersion: 2
+        x: 5418
+        y: 0
+        width: 425
+        height: 533
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2271a78e66dd58d0800000000000000
+      internalID: -2855890818472775125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pontefice_gyattis_7
+      rect:
+        serializedVersion: 2
+        x: 6288
+        y: 0
+        width: 425
+        height: 533
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7c55101a322c6330800000000000000
+      internalID: 3705374226192358526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pontefice_gyattis_8
+      rect:
+        serializedVersion: 2
+        x: 7158
+        y: 0
+        width: 425
+        height: 533
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a81247d05ab49b8d0800000000000000
+      internalID: -2830147718558244470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pontefice_gyattis_9
+      rect:
+        serializedVersion: 2
+        x: 8029
+        y: 1
+        width: 423
+        height: 532
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d413cfadace480590800000000000000
+      internalID: -7707824129080282803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pontefice_gyattis_10
+      rect:
+        serializedVersion: 2
+        x: 8898
+        y: 0
+        width: 425
+        height: 533
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5259bf670a3c8320800000000000000
+      internalID: 2561486091680567898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pontefice_gyattis_11
+      rect:
+        serializedVersion: 2
+        x: 9768
+        y: 0
+        width: 425
+        height: 533
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0e2314b55a587700800000000000000
+      internalID: 538279479610650122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pontefice_gyattis_12
+      rect:
+        serializedVersion: 2
+        x: 10638
+        y: 0
+        width: 425
+        height: 533
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e407af159a3b9be0800000000000000
+      internalID: -1469516441250757406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pontefice_gyattis_13
+      rect:
+        serializedVersion: 2
+        x: 11508
+        y: 0
+        width: 425
+        height: 533
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e984de5cc24bb4f00800000000000000
+      internalID: 1102172638214441118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pontefice_gyattis_14
+      rect:
+        serializedVersion: 2
+        x: 12379
+        y: 1
+        width: 423
+        height: 532
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df3be153396276c90800000000000000
+      internalID: -7176725067498343427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      pontefice_gyattis_0: -4377480294095875084
+      pontefice_gyattis_1: 8135826895075477849
+      pontefice_gyattis_10: 2561486091680567898
+      pontefice_gyattis_11: 538279479610650122
+      pontefice_gyattis_12: -1469516441250757406
+      pontefice_gyattis_13: 1102172638214441118
+      pontefice_gyattis_14: -7176725067498343427
+      pontefice_gyattis_2: 2612189109707531011
+      pontefice_gyattis_3: -8731763894971280594
+      pontefice_gyattis_4: 2827893201203199576
+      pontefice_gyattis_5: -6452487445882937465
+      pontefice_gyattis_6: -2855890818472775125
+      pontefice_gyattis_7: 3705374226192358526
+      pontefice_gyattis_8: -2830147718558244470
+      pontefice_gyattis_9: -7707824129080282803
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
