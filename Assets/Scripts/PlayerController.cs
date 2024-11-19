@@ -237,12 +237,10 @@ public class PlayerController : MonoBehaviour {
         anim.SetTrigger("Dashing");
         rb.gravityScale = 0;
         rb.linearVelocity = new Vector2(transform.localScale.x * dashSpeed, 0);
-        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Attackable"), true);
 
         yield return new WaitForSeconds(dashTime);
         rb.gravityScale = gravity;
         pState = PlayerState.Idle;
-        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Attackable"), false);
 
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
@@ -326,10 +324,19 @@ public class PlayerController : MonoBehaviour {
         CameraScript cam = Camera.main.GetComponent<CameraScript>();
 
         for (int i = 0; i < objectsToHit.Length; i++) {
-            if (objectsToHit[i].GetComponent<Enemy>() != null)
+            Enemy enemy = objectsToHit[i].GetComponent<Enemy>();
+            if (enemy != null)
             {
                 cam.Shake(0.4f, 0.1f);
-                objectsToHit[i].GetComponent<Enemy>().EnemyHit(damageTotal, (transform.position - objectsToHit[i].transform.position).normalized, 100);
+                enemy.EnemyHit(damageTotal, (transform.position - objectsToHit[i].transform.position).normalized, 100);
+            }
+
+            // Check if the object is the Boss
+            Boss boss = objectsToHit[i].GetComponent<Boss>();
+            if (boss != null)
+            {
+                cam.Shake(0.4f, 0.1f);
+                boss.BossHit(damageTotal);
             }
         }
     }
