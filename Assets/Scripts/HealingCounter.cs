@@ -5,13 +5,12 @@ public class HealCounter : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI textMeshPro;
 
-
-    void Start()
+    void FixedUpdate()
     {
         if (PlayerController.Instance != null) {
             textMeshPro.text = "" + PlayerController.Instance.heals;
         } else {
-            textMeshPro.text = "Missing";
+            textMeshPro.text = "Player Missing";
         }
     }
 

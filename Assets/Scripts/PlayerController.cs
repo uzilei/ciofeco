@@ -438,10 +438,43 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-    public void ExitGame() {
-        Application.Quit();
-    #if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false; // This line is for testing in the Unity editor
-    #endif
+    public void ResetGame() {
+        // Reload the starting scene
+        SceneManager.LoadScene("Level1");
+
+        // Reset attributes after the scene reloads
+        StartCoroutine(ResetAttributesAfterSceneLoad());
+    }
+
+    private IEnumerator ResetAttributesAfterSceneLoad() {
+        while (SceneManager.GetActiveScene().name != "Level1") {
+            yield return null;
+        }
+        // Reset Player attributes
+        transform.position = Vector3.zero; // Reset position to the origin
+        rb.linearVelocity = Vector3.zero;
+        health = maxHealth; // Restore health to max
+        heals = 3; // Reset heals (example value, set as needed)
+        pState = PlayerState.Idle; // Set the player state to idle
+        attackCount = 0; // Reset attack count
+        timeSinceAttack = 0f; // Reset attack timer
+        timeSinceHeal = 0f; // Reset heal timer
+        anim.Rebind(); // Reset the Animator to its default state
+        anim.Update(0); // Clear any animation state residue
+        // Notify any UI elements
+        OnHealthChangedCallBack?.Invoke();
+        yield return new WaitForSeconds(0.1f);
+        transform.position = Vector3.zero; // Reset position to the origin
+        rb.linearVelocity = Vector3.zero;
+        health = maxHealth; // Restore health to max
+        heals = 3; // Reset heals (example value, set as needed)
+        pState = PlayerState.Idle; // Set the player state to idle
+        attackCount = 0; // Reset attack count
+        timeSinceAttack = 0f; // Reset attack timer
+        timeSinceHeal = 0f; // Reset heal timer
+        anim.Rebind(); // Reset the Animator to its default state
+        anim.Update(0); // Clear any animation state residue
+        // Notify any UI elements
+        OnHealthChangedCallBack?.Invoke();
     }
 }

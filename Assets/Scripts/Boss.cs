@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Boss : MonoBehaviour {
     public static Boss Instance { get; private set; }
-    private int bossHealth = 50;
+    private int bossHealth = 40;
     private bool invulnerable = false;
     private int phase = 0;
     Animator anim;
@@ -13,19 +13,24 @@ public class Boss : MonoBehaviour {
     [SerializeField] private Transform blastSpawnPoint;
     [SerializeField] private float blastSpawnPointRadius = 0.5f;
 
+    [Header("Blast2")]
+    [SerializeField] private Transform blastSpawnPoint2;
+
     [Header("Vortex")]
     [SerializeField] private GameObject vortexPrefab;
 
     [Header("Beam")]
     [SerializeField] private GameObject beamPrefab;
     [SerializeField] private float beamYPosition;
+    Transform player;
 
-    [Header("References")]
-    [SerializeField] private Transform player;
-
+    private void Awake() {
+        AssignPlayer();
+    }
+    
     private void Start()
-        {
-            if (Instance == null)
+    {
+        if (Instance == null)
         {
             Instance = this;
         }
@@ -33,9 +38,29 @@ public class Boss : MonoBehaviour {
         {
             Destroy(gameObject); // Ensure there's only one boss instance
         }
-        player = FindFirstObjectByType<PlayerController>().transform;
+        AssignPlayer();
         anim = GetComponent<Animator>();
         StartCoroutine(Phase1());
+    }
+
+    private void FixedUpdate() {
+        AssignPlayer();
+    }
+
+    private void AssignPlayer()
+    {
+        if (player == null)
+        {
+            PlayerController foundPlayer = FindFirstObjectByType<PlayerController>();
+            if (foundPlayer != null)
+            {
+                player = foundPlayer.transform;
+            }
+            else
+            {
+                Debug.LogWarning("Player not found during assignment.");
+            }
+        }
     }
 
     private IEnumerator SpawnAttack(GameObject prefab, Vector3 spawnPosition, float interval, int count)
@@ -55,10 +80,24 @@ public class Boss : MonoBehaviour {
         yield return SpawnAttack(blastPrefab, blastSpawnPoint.position, spawnInterval, numberOfBlasts);
     }
 
+    private IEnumerator Blast2(float spawnInterval, int numberOfBlasts)
+    {
+        yield return SpawnAttack(blastPrefab, blastSpawnPoint2.position, spawnInterval, numberOfBlasts);
+    }
+
     private IEnumerator Vortex(float spawnInterval, int numberOfVortexes)
     {
-        yield return SpawnAttack(vortexPrefab, player.position, spawnInterval, numberOfVortexes);
+        for (int i = 0; i < numberOfVortexes; i++)
+        {
+            if (vortexPrefab != null)
+            {
+                Vector3 currentPlayerPosition = player.position;
+                Instantiate(vortexPrefab, currentPlayerPosition, Quaternion.identity);
+            }
+            yield return new WaitForSeconds(spawnInterval);
+        }
     }
+
 
     private IEnumerator Beam(float spawnInterval, int numberOfBeams)
     {
@@ -71,14 +110,20 @@ public class Boss : MonoBehaviour {
 
     private IEnumerator Phase1()
     {
+        while (player == null)
+        {
+            yield return null; // Wait for the next frame
+        }
         if (phase >= 1) yield break; // Prevent re-entering Phase1
         phase = 1;
         Debug.Log("Starting phase 1");
         invulnerable = true;
 
-        // Pass custom parameters for blast attack
-        yield return new WaitForSeconds(3);
-        yield return Blast(1f, 10);
+        yield return new WaitForSeconds(2);
+        StartCoroutine(Beam(1f, 1));
+        yield return new WaitForSeconds(10);
+        StartCoroutine(Blast(1f, 10));
+        yield return Blast2(1f, 10);
 
         invulnerable = false;
         anim.SetTrigger("Open");
@@ -95,8 +140,9 @@ public class Boss : MonoBehaviour {
 
         // Pass custom parameters for blast and vortex attacks
         yield return new WaitForSeconds(3);
-        StartCoroutine(Blast(0.5f, 60));
-        yield return Vortex(3f, 10);
+        StartCoroutine(Blast(0.5f, 40));
+        StartCoroutine(Blast2(0.5f, 40));
+        yield return Vortex(2f, 10);
 
         invulnerable = false;
         anim.SetTrigger("Open");
@@ -113,9 +159,10 @@ public class Boss : MonoBehaviour {
 
         // Pass custom parameters for all attacks
         yield return new WaitForSeconds(3);
-        StartCoroutine(Blast(3f, 10000));
-        StartCoroutine(Beam(12f, 10000));
-
+        StartCoroutine(Blast(2f, 10000));
+        StartCoroutine(Blast2(3f, 10000));
+        StartCoroutine(Beam(8f, 10000));
+        StartCoroutine(Vortex(4f, 10000));
         yield return new WaitForSeconds(10);
         invulnerable = false;
         anim.SetTrigger("Open");
@@ -136,11 +183,11 @@ public class Boss : MonoBehaviour {
         {
             StartCoroutine(BossDeath());
         }
-        else if (bossHealth <= 30 && phase < 3)
+        else if (bossHealth <= 20 && phase < 3)
         {
             StartCoroutine(Phase3());
         }
-        else if (bossHealth <= 40 && phase < 2)
+        else if (bossHealth <= 30 && phase < 2)
         {
             StartCoroutine(Phase2());
         }
@@ -149,7 +196,7 @@ public class Boss : MonoBehaviour {
     private IEnumerator BossDeath()
     {
         Debug.Log("Boss defeated!");
-        // Add death animation (will do myself)
+        anim.SetTrigger("Death");
         yield return new WaitForSeconds(10);
         Destroy(gameObject);
     }
@@ -158,5 +205,6 @@ public class Boss : MonoBehaviour {
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(blastSpawnPoint.position, blastSpawnPointRadius);
+        Gizmos.DrawWireSphere(blastSpawnPoint2.position, blastSpawnPointRadius);
     }
 }
