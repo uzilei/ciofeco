@@ -237,12 +237,10 @@ public class PlayerController : MonoBehaviour {
         anim.SetTrigger("Dashing");
         rb.gravityScale = 0;
         rb.linearVelocity = new Vector2(transform.localScale.x * dashSpeed, 0);
-        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Attackable"), true);
 
         yield return new WaitForSeconds(dashTime);
         rb.gravityScale = gravity;
         pState = PlayerState.Idle;
-        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Attackable"), false);
 
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
@@ -323,13 +321,22 @@ public class PlayerController : MonoBehaviour {
 
     void Hit(Transform _AttackTransform, Vector2 _AttackArea, int damageTotal) {
         Collider2D[] objectsToHit = Physics2D.OverlapBoxAll(_AttackTransform.position, _AttackArea, 0, attackableLayer);
+        CameraScript cam = Camera.main.GetComponent<CameraScript>();
 
         for (int i = 0; i < objectsToHit.Length; i++) {
-            if (objectsToHit[i].GetComponent<Enemy>() != null)
+            Enemy enemy = objectsToHit[i].GetComponent<Enemy>();
+            if (enemy != null)
             {
-                CameraFollow cam = Camera.main.GetComponent<CameraFollow>();
-                cam.Shake();
-                objectsToHit[i].GetComponent<Enemy>().EnemyHit(damageTotal, (transform.position - objectsToHit[i].transform.position).normalized, 100);
+                cam.Shake(0.4f, 0.1f);
+                enemy.EnemyHit(damageTotal, (transform.position - objectsToHit[i].transform.position).normalized, 100);
+            }
+
+            // Check if the object is the Boss
+            Boss boss = objectsToHit[i].GetComponent<Boss>();
+            if (boss != null)
+            {
+                cam.Shake(0.4f, 0.1f);
+                boss.BossHit(damageTotal);
             }
         }
     }
@@ -357,8 +364,8 @@ public class PlayerController : MonoBehaviour {
         }
         iFrameTimer = iFrameDuration;
         ApplyKnockback(hitDirection);
-        CameraFollow cam = Camera.main.GetComponent<CameraFollow>();
-        cam.Shake();
+        CameraScript cam = Camera.main.GetComponent<CameraScript>();
+        cam.Shake(0.4f, 0.1f);
         Debug.Log($"Player took {damage} damage, Current health: {health}");
     }
 
@@ -386,8 +393,8 @@ public class PlayerController : MonoBehaviour {
         }
         iFrameTimerAbsolute = iFrameDurationAbsolute;
         ApplyKnockback(hitDirection);
-        CameraFollow cam = Camera.main.GetComponent<CameraFollow>();
-        cam.Shake();
+        CameraScript cam = Camera.main.GetComponent<CameraScript>();
+        cam.Shake(0.4f, 0.1f);
         Debug.Log($"Player took {damage} absolute damage, Current health: {health}");
     }
 
