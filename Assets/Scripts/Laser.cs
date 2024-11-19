@@ -19,8 +19,10 @@ public class BeamLaser : MonoBehaviour
     }
 
     private IEnumerator FireDaLazor() {
+        CameraScript cam = Camera.main.GetComponent<CameraScript>();
         yield return new WaitForSeconds(2.5f);
         canDamage = true;
+        cam.Shake(0.2f, 4.8f);
     }
 
     void FixedUpdate()
@@ -54,7 +56,7 @@ public class BeamLaser : MonoBehaviour
                     if (player != null)
                     {
                         Vector2 hitDirection = (collider.transform.position - transform.position).normalized;
-                        player.TakeDamageAbsolute(beamDamage, hitDirection);
+                        player.TakeDamageEnemy(beamDamage, hitDirection);
                     }
                 }
             }

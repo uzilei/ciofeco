@@ -15,9 +15,7 @@ public class CameraScript : MonoBehaviour
     [SerializeField] private float minY = -5f;
     [SerializeField] private float maxY = 5f;
 
-    // Shake parameters
-    [Header("Camera Shake")]
-    private float shakeInterval = 0.025f; // Interval between each shake (in seconds)
+    private float shakeInterval = 0.01f; // Interval between each shake (in seconds)
 
     private float shakeTimer = 0f;
     private Vector3 originalPosition; // To store the original camera position

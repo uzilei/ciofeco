@@ -29,7 +29,7 @@ public class VortexProjectile : MonoBehaviour
                 if (player != null)
                 {
                     Vector2 hitDirection = (collider.transform.position - transform.position).normalized;
-                    player.TakeDamageEnemy(damage, hitDirection);
+                    player.TakeDamageAbsolute(damage, hitDirection);
                 }
             }
         }
