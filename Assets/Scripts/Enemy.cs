@@ -14,8 +14,7 @@ public class Enemy : MonoBehaviour {
     [SerializeField] Transform enemyAttackTransform;
     [SerializeField] Vector2 enemyAttackArea = new Vector2(1, 1);
 
-    [Header("References")]
-    [SerializeField] PlayerController player;
+    PlayerController player;
 
     bool isRecoiling = false;
     bool isAttacking = false;
@@ -47,7 +46,7 @@ public class Enemy : MonoBehaviour {
     }
 
     void FixedUpdate() {
-        if (isDead || isAttacking) return;
+        if (isDead || isAttacking || player == null) return;
 
         if (isRecoiling) {
             HandleRecoil();

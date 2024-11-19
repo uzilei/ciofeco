@@ -22,13 +22,15 @@ public class Boss : MonoBehaviour {
     [Header("Beam")]
     [SerializeField] private GameObject beamPrefab;
     [SerializeField] private float beamYPosition;
+    Transform player;
 
-    [Header("References")]
-    [SerializeField] private Transform player;
-
+    private void Awake() {
+        AssignPlayer();
+    }
+    
     private void Start()
-        {
-            if (Instance == null)
+    {
+        if (Instance == null)
         {
             Instance = this;
         }
@@ -36,9 +38,29 @@ public class Boss : MonoBehaviour {
         {
             Destroy(gameObject); // Ensure there's only one boss instance
         }
-        player = FindFirstObjectByType<PlayerController>().transform;
+        AssignPlayer();
         anim = GetComponent<Animator>();
         StartCoroutine(Phase1());
+    }
+
+    private void FixedUpdate() {
+        AssignPlayer();
+    }
+
+    private void AssignPlayer()
+    {
+        if (player == null)
+        {
+            PlayerController foundPlayer = FindFirstObjectByType<PlayerController>();
+            if (foundPlayer != null)
+            {
+                player = foundPlayer.transform;
+            }
+            else
+            {
+                Debug.LogWarning("Player not found during assignment.");
+            }
+        }
     }
 
     private IEnumerator SpawnAttack(GameObject prefab, Vector3 spawnPosition, float interval, int count)
@@ -88,6 +110,10 @@ public class Boss : MonoBehaviour {
 
     private IEnumerator Phase1()
     {
+        while (player == null)
+        {
+            yield return null; // Wait for the next frame
+        }
         if (phase >= 1) yield break; // Prevent re-entering Phase1
         phase = 1;
         Debug.Log("Starting phase 1");
