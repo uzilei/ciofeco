@@ -116,7 +116,6 @@ public class Enemy : MonoBehaviour {
 
     IEnumerator EndAttack() {
         yield return new WaitForSeconds(attackTime);
-        Debug.Log("Called EndAttack");
         isAttacking = false;
     }
 
