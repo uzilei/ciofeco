@@ -1,52 +1,52 @@
 fileFormatVersion: 2
-guid: 85bcdad3cf59f4d488a49e181eb22111
+guid: 343015f87c8cc3343893996ef519928d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4377480294095875084
-    second: pontefice_gyattis_0
+      213: 7261323403473509586
+    second: boss 1_0
   - first:
-      213: 8135826895075477849
-    second: pontefice_gyattis_1
+      213: -3934055364342973861
+    second: boss 1_1
   - first:
-      213: 2612189109707531011
-    second: pontefice_gyattis_2
+      213: 2697262100669812554
+    second: boss 1_2
   - first:
-      213: -8731763894971280594
-    second: pontefice_gyattis_3
+      213: -9064089841278704356
+    second: boss 1_3
   - first:
-      213: 2827893201203199576
-    second: pontefice_gyattis_4
+      213: -8465021083237222576
+    second: boss 1_4
   - first:
-      213: -6452487445882937465
-    second: pontefice_gyattis_5
+      213: -9137354287304560448
+    second: boss 1_5
   - first:
-      213: -2855890818472775125
-    second: pontefice_gyattis_6
+      213: 2452953152461265636
+    second: boss 1_6
   - first:
-      213: 3705374226192358526
-    second: pontefice_gyattis_7
+      213: -2072835039182731545
+    second: boss 1_7
   - first:
-      213: -2830147718558244470
-    second: pontefice_gyattis_8
+      213: -4156292236979015916
+    second: boss 1_8
   - first:
-      213: -7707824129080282803
-    second: pontefice_gyattis_9
+      213: 3772358790337200872
+    second: boss 1_9
   - first:
-      213: 2561486091680567898
-    second: pontefice_gyattis_10
+      213: -7383114991908575758
+    second: boss 1_10
   - first:
-      213: 538279479610650122
-    second: pontefice_gyattis_11
+      213: 4873899757810063428
+    second: boss 1_11
   - first:
-      213: -1469516441250757406
-    second: pontefice_gyattis_12
+      213: -5791442530454524952
+    second: boss 1_12
   - first:
-      213: 1102172638214441118
-    second: pontefice_gyattis_13
+      213: -4967345966991139041
+    second: boss 1_13
   - first:
-      213: -7176725067498343427
-    second: pontefice_gyattis_14
+      213: -5737549715822449858
+    second: boss 1_14
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -114,7 +114,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 16384
+    maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -155,331 +155,331 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: pontefice_gyattis_0
+      name: boss_0
       rect:
         serializedVersion: 2
-        x: 198
+        x: 0
         y: 0
-        width: 425
-        height: 533
+        width: 500
+        height: 600
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4f3942b8dd01043c0800000000000000
-      internalID: -4377480294095875084
+      spriteID: 32410257214401443a70f270a25879c3
+      internalID: -923712544
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pontefice_gyattis_1
+      name: boss_1
       rect:
         serializedVersion: 2
-        x: 1068
+        x: 500
         y: 0
-        width: 425
-        height: 533
+        width: 500
+        height: 600
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9590b03a47348e070800000000000000
-      internalID: 8135826895075477849
+      spriteID: eb0a0f2a9a9f8a94f99838c24f965746
+      internalID: 1578685912
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pontefice_gyattis_2
+      name: boss_2
       rect:
         serializedVersion: 2
-        x: 1938
+        x: 1000
         y: 0
-        width: 425
-        height: 533
+        width: 500
+        height: 600
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 303e242c72c504420800000000000000
-      internalID: 2612189109707531011
+      spriteID: b42e7d257a4dad2448b0d870bf3016ba
+      internalID: 1353948199
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pontefice_gyattis_3
+      name: boss_3
       rect:
         serializedVersion: 2
-        x: 2808
+        x: 1500
         y: 0
-        width: 425
-        height: 533
+        width: 500
+        height: 600
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e23d7a9100b82d680800000000000000
-      internalID: -8731763894971280594
+      spriteID: aaede9048897a1b4e8aa206828555b23
+      internalID: 1770510398
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pontefice_gyattis_4
+      name: boss_4
       rect:
         serializedVersion: 2
-        x: 3678
+        x: 2000
         y: 0
-        width: 425
-        height: 533
+        width: 500
+        height: 600
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 85e757832e1be3720800000000000000
-      internalID: 2827893201203199576
+      spriteID: 0aacdde37f9464c488d7451d00c1d601
+      internalID: -156436217
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pontefice_gyattis_5
+      name: boss_5
       rect:
         serializedVersion: 2
-        x: 4548
+        x: 2500
         y: 0
-        width: 425
-        height: 533
+        width: 500
+        height: 600
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 78fda7ecad82476a0800000000000000
-      internalID: -6452487445882937465
+      spriteID: 3b7cfa45dc6bc49479137c6866d2c49a
+      internalID: 44425895
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pontefice_gyattis_6
+      name: boss_6
       rect:
         serializedVersion: 2
-        x: 5418
+        x: 3000
         y: 0
-        width: 425
-        height: 533
+        width: 500
+        height: 600
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b2271a78e66dd58d0800000000000000
-      internalID: -2855890818472775125
+      spriteID: 326e0a99cac63114588e1aaba0e94158
+      internalID: -922851096
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pontefice_gyattis_7
+      name: boss_7
       rect:
         serializedVersion: 2
-        x: 6288
+        x: 3500
         y: 0
-        width: 425
-        height: 533
+        width: 500
+        height: 600
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e7c55101a322c6330800000000000000
-      internalID: 3705374226192358526
+      spriteID: 82fb9245e8436c741b575d62ab5639c0
+      internalID: -2132754359
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pontefice_gyattis_8
+      name: boss_8
       rect:
         serializedVersion: 2
-        x: 7158
+        x: 4000
         y: 0
-        width: 425
-        height: 533
+        width: 500
+        height: 600
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a81247d05ab49b8d0800000000000000
-      internalID: -2830147718558244470
+      spriteID: c557f097b49d4a9438d35ab1aead0858
+      internalID: 160180402
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pontefice_gyattis_9
+      name: boss_9
       rect:
         serializedVersion: 2
-        x: 8029
-        y: 1
-        width: 423
-        height: 532
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d413cfadace480590800000000000000
-      internalID: -7707824129080282803
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pontefice_gyattis_10
-      rect:
-        serializedVersion: 2
-        x: 8898
+        x: 4500
         y: 0
-        width: 425
-        height: 533
+        width: 500
+        height: 600
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a5259bf670a3c8320800000000000000
-      internalID: 2561486091680567898
+      spriteID: fc01b49377369064a8b9204eccb29701
+      internalID: 1361408858
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pontefice_gyattis_11
+      name: boss_10
       rect:
         serializedVersion: 2
-        x: 9768
+        x: 5000
         y: 0
-        width: 425
-        height: 533
+        width: 500
+        height: 600
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a0e2314b55a587700800000000000000
-      internalID: 538279479610650122
+      spriteID: 9d94d63751759ca43b3ce1d44a03903f
+      internalID: -1201466717
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pontefice_gyattis_12
+      name: boss_11
       rect:
         serializedVersion: 2
-        x: 10638
+        x: 5500
         y: 0
-        width: 425
-        height: 533
+        width: 500
+        height: 600
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2e407af159a3b9be0800000000000000
-      internalID: -1469516441250757406
+      spriteID: 2792bdebe33655d469dcd374e44be192
+      internalID: 934734852
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pontefice_gyattis_13
+      name: boss_12
       rect:
         serializedVersion: 2
-        x: 11508
+        x: 6000
         y: 0
-        width: 425
-        height: 533
+        width: 500
+        height: 600
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e984de5cc24bb4f00800000000000000
-      internalID: 1102172638214441118
+      spriteID: cf9cccb30908b284d872ab6ad3fe4cf8
+      internalID: -183158256
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pontefice_gyattis_14
+      name: boss_13
       rect:
         serializedVersion: 2
-        x: 12379
-        y: 1
-        width: 423
-        height: 532
+        x: 6500
+        y: 0
+        width: 500
+        height: 600
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: df3be153396276c90800000000000000
-      internalID: -7176725067498343427
+      spriteID: e0a9b4894a3f75f45ae071c69c680d6e
+      internalID: -731360950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_14
+      rect:
+        serializedVersion: 2
+        x: 7000
+        y: 0
+        width: 500
+        height: 600
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97c6c19eb362ac14daa398676956f287
+      internalID: -2042284871
       vertices: []
       indices: 
       edges: []
@@ -488,7 +488,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 2d392f636b1b1f5408046020b5bfb180
     internalID: 0
     vertices: []
     indices: 
@@ -498,21 +498,21 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      pontefice_gyattis_0: -4377480294095875084
-      pontefice_gyattis_1: 8135826895075477849
-      pontefice_gyattis_10: 2561486091680567898
-      pontefice_gyattis_11: 538279479610650122
-      pontefice_gyattis_12: -1469516441250757406
-      pontefice_gyattis_13: 1102172638214441118
-      pontefice_gyattis_14: -7176725067498343427
-      pontefice_gyattis_2: 2612189109707531011
-      pontefice_gyattis_3: -8731763894971280594
-      pontefice_gyattis_4: 2827893201203199576
-      pontefice_gyattis_5: -6452487445882937465
-      pontefice_gyattis_6: -2855890818472775125
-      pontefice_gyattis_7: 3705374226192358526
-      pontefice_gyattis_8: -2830147718558244470
-      pontefice_gyattis_9: -7707824129080282803
+      boss_0: -923712544
+      boss_1: 1578685912
+      boss_10: -1201466717
+      boss_11: 934734852
+      boss_12: -183158256
+      boss_13: -731360950
+      boss_14: -2042284871
+      boss_2: 1353948199
+      boss_3: 1770510398
+      boss_4: -156436217
+      boss_5: 44425895
+      boss_6: -922851096
+      boss_7: -2132754359
+      boss_8: 160180402
+      boss_9: 1361408858
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
