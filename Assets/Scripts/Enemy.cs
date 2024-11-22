@@ -35,7 +35,7 @@ public class Enemy : MonoBehaviour {
 
     private IEnumerator AssignPlayer() {
         while (PlayerController.Instance == null) {
-            yield return null; // Wait for PlayerController to be instantiated
+            yield return null;
         }
         player = PlayerController.Instance;
     }
@@ -137,7 +137,7 @@ public class Enemy : MonoBehaviour {
         isRecoiling = true;
         anim.SetBool("Recoiling", true);
         recoilTimer = 0f;
-        rb.linearVelocity = Vector2.zero; // Stop movement
+        rb.linearVelocity = Vector2.zero;
     }
 
     void EnemyDeath() {

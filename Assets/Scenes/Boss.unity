@@ -1763,7 +1763,6 @@ MonoBehaviour:
   vortexPrefab: {fileID: 8762417201277326581, guid: 0b62314ccb302c34889b3845dd9b08d4, type: 3}
   beamPrefab: {fileID: 1698176070552895966, guid: 05865d1618617454180a2c1fa9664e5c, type: 3}
   beamYPosition: 2
-  player: {fileID: 1022293278977206539, guid: 63e2d6f91d802df40a9c3bb3d7ec06cd, type: 3}
 --- !u!61 &1964965226
 BoxCollider2D:
   m_ObjectHideFlags: 0
