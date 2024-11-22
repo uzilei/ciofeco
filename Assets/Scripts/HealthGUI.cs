@@ -1,8 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthGUI : MonoBehaviour
-{
+public class HealthGUI : MonoBehaviour {
     private Slider slide;
     private PlayerController player;
 

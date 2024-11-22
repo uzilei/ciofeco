@@ -14,8 +14,7 @@ public class Enemy : MonoBehaviour {
     [SerializeField] Transform enemyAttackTransform;
     [SerializeField] Vector2 enemyAttackArea = new Vector2(1, 1);
 
-    [Header("References")]
-    [SerializeField] PlayerController player;
+    PlayerController player;
 
     bool isRecoiling = false;
     bool isAttacking = false;
@@ -36,7 +35,7 @@ public class Enemy : MonoBehaviour {
 
     private IEnumerator AssignPlayer() {
         while (PlayerController.Instance == null) {
-            yield return null; // Wait for PlayerController to be instantiated
+            yield return null;
         }
         player = PlayerController.Instance;
     }
@@ -47,7 +46,7 @@ public class Enemy : MonoBehaviour {
     }
 
     void FixedUpdate() {
-        if (isDead || isAttacking) return;
+        if (isDead || isAttacking || player == null) return;
 
         if (isRecoiling) {
             HandleRecoil();
@@ -138,7 +137,7 @@ public class Enemy : MonoBehaviour {
         isRecoiling = true;
         anim.SetBool("Recoiling", true);
         recoilTimer = 0f;
-        rb.linearVelocity = Vector2.zero; // Stop movement
+        rb.linearVelocity = Vector2.zero;
     }
 
     void EnemyDeath() {

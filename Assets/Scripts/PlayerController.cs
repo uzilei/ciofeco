@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour {
     [Header("Horizontal Movement Setting")]
     private Rigidbody2D rb;
-
+    public string bossScene = "Boss";
     [SerializeField] public float walkspeed;
 
     private float xAxis;
@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour {
     public int heals;
     private int healingAmount = 5;
 
-    //Life bar management
+    // Health bar (unsure what this does)
     public delegate void OnHealthChangedDelegate();
     [HideInInspector] public OnHealthChangedDelegate OnHealthChangedCallBack;
     [Space(5)]
@@ -91,6 +91,8 @@ public class PlayerController : MonoBehaviour {
         if (healCount == null) {
             healCount = FindFirstObjectByType<HealCounter>();
         }
+        
+       
     }
 
     void OnDrawGizmos() {
@@ -134,6 +136,7 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetKeyDown("q")) {
             Heal();
         }
+        
     }
 
     void FixedUpdate() {
@@ -207,10 +210,8 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void CheckWallCollision() {
-        // Check if the player's scale on the x-axis is negative (flipped)
         bool isFlipped = transform.localScale.x < 0;
 
-        // If the player is flipped, invert the x-axis input
         if (isFlipped) {
             xAxis = -xAxis;
         }
@@ -218,14 +219,12 @@ public class PlayerController : MonoBehaviour {
         isAgainstLeftWall = Physics2D.OverlapBox(leftWallCheck.position, wallCheckSize, 0f, wallLayer);
         isAgainstRightWall = Physics2D.OverlapBox(rightWallCheck.position, wallCheckSize, 0f, wallLayer);
 
-        // Prevent movement if the player is against the wall
         if (isAgainstLeftWall && xAxis < 0) {
             xAxis = 0;
         } else if (isAgainstRightWall && xAxis > 0) {
             xAxis = 0;
         }
 
-        // If the player is flipped back, invert the x-axis input again
         if (isFlipped) {
             xAxis = -xAxis;
         }
@@ -255,6 +254,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     void Jump() {
+        
         if (pState != PlayerState.Attacking && pState != PlayerState.Dead) {
             if (Grounded() && pState != PlayerState.Attacking) {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
@@ -438,10 +438,17 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-    public void ExitGame() {
-        Application.Quit();
-    #if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false; // This line is for testing in the Unity editor
-    #endif
+    public void ResetGame() {
+        SceneManager.LoadScene("MainMenu");
+        Destroy(gameObject);
+        // StartCoroutine(ResetAttributesAfterSceneLoad());
     }
+   
+
+    // private IEnumerator ResetAttributesAfterSceneLoad() {
+    //     while (SceneManager.GetActiveScene().name != "MainMenu") {
+    //         yield return null;
+    //     }
+    //    Destroy(gameObject);
+    // }
 }
